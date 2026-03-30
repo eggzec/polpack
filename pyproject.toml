@@ -1,7 +1,81 @@
 [project]
 name = "polpack"
-version = "0.0.1"
+dynamic = ["version"]
 description = "Special Functions and Recursively-Defined Polynomial Families for Python"
+authors = [
+    { name = "John Burkardt", email = "jvb25@pitt.edu" },
+]
+maintainers = [
+    { name = "Saud Zahir", email = "m.saud.zahir@gmail.com" },
+    { name = "M Laraib Ali", email = "laraibg786@outlook.com" }
+]
 readme = "README.md"
+license = "LGPL-2.1"
+keywords = [
+    "special functions",
+    "polynomials",
+    "combinatorics",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Programming Language :: Fortran",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development",
+    "Topic :: Scientific/Engineering",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Operating System :: MacOS",
+]
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "numpy",
+]
+
+[project.urls]
+homepage = "https://eggzec.github.io/polpack"
+documentation = "https://eggzec.github.io/polpack/api/"
+source = "https://github.com/eggzec/polpack"
+releasenotes = "https://github.com/eggzec/polpack/releases/latest"
+issues = "https://github.com/eggzec/polpack/issues"
+
+[dependency-groups]
+dev = [
+  {include-group = "docs"},
+  {include-group = "test"},
+  "meson-python",
+  "ninja",
+]
+docs = [
+    "zensical>=0.0.23"
+]
+test = [
+    "pytest>=8.3.5",
+    "pytest-cov>=6.0",
+    "pytest-xdist>=3.6.1",
+]
+
+[build-system]
+requires = [
+    "meson-python",
+    "numpy>=2.0.0",
+    "packaging",
+    "setuptools_scm>=8"
+]
+build-backend = "mesonpy"
+
+[tool.setuptools_scm]
+version_scheme = "release-branch-semver"
+local_scheme = "no-local-version"
+
+[tool.cibuildwheel]
+enable = ["cpython-prerelease"]

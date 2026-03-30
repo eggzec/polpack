@@ -1,0 +1,897 @@
+python module _polpack ! in 
+    interface  ! in :polpack
+        subroutine agm_values(n_data,a,b,fx) 
+                    integer :: n_data
+                    double precision :: a
+                    double precision :: b
+                    double precision :: fx
+                end subroutine agm_values
+        function agud(g) 
+                    double precision :: g
+                    double precision :: agud
+                end function agud
+        function align_enum(m,n) 
+                    integer :: m
+                    integer :: n
+                    integer :: align_enum
+                end function align_enum
+        subroutine bell(n,b) 
+                    integer intent(in) :: n
+                    integer dimension(1 + n), intent(in, out), depend(n) :: b
+                end subroutine bell
+        subroutine bell_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine bell_values
+        function benford(ival) 
+                    integer :: ival
+                    double precision :: benford
+                end function benford
+        subroutine bernoulli_number(n,b) 
+                    integer intent(in) :: n
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: b
+                end subroutine bernoulli_number
+        subroutine bernoulli_number2(n,b) 
+                    integer intent(in) :: n
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: b
+                end subroutine bernoulli_number2
+        subroutine bernoulli_number3(n,b) 
+                    integer :: n
+                    double precision :: b
+                end subroutine bernoulli_number3
+        subroutine bernoulli_number_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: c
+                end subroutine bernoulli_number_values
+        subroutine bernoulli_poly(n,x,bx) 
+                    integer :: n
+                    double precision :: x
+                    double precision :: bx
+                end subroutine bernoulli_poly
+        subroutine bernoulli_poly2(n,x,bx) 
+                    integer :: n
+                    double precision :: x
+                    double precision :: bx
+                end subroutine bernoulli_poly2
+        subroutine bernstein_poly(n,x,bern) 
+                    integer intent(in) :: n
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: bern
+                end subroutine bernstein_poly
+        subroutine bernstein_poly_values(n_data,n,k,x,b) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: k
+                    double precision :: x
+                    double precision :: b
+                end subroutine bernstein_poly_values
+        subroutine beta_values(n_data,x,y,fxy) 
+                    integer :: n_data
+                    double precision :: x
+                    double precision :: y
+                    double precision :: fxy
+                end subroutine beta_values
+        subroutine bpab(n,x,a,b,bern) 
+                    integer intent(in) :: n
+                    double precision :: x
+                    double precision :: a
+                    double precision :: b
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: bern
+                end subroutine bpab
+        subroutine cardan_poly(n,x,s,cx) 
+                    integer intent(in) :: n
+                    double precision :: x
+                    double precision :: s
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine cardan_poly
+        subroutine cardan_poly_coef(n,s,c) 
+                    integer intent(in) :: n
+                    double precision :: s
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: c
+                end subroutine cardan_poly_coef
+        subroutine cardinal_cos(j,m,n,t,c) 
+                    integer :: j
+                    integer :: m
+                    integer intent(in) :: n
+                    double precision dimension(n), intent(in, out), depend(n) :: t
+                    double precision dimension(n), intent(in, out), depend(n) :: c
+                end subroutine cardinal_cos
+        subroutine cardinal_sin(j,m,n,t,s) 
+                    integer :: j
+                    integer :: m
+                    integer intent(in) :: n
+                    double precision dimension(n), intent(in, out), depend(n) :: t
+                    double precision dimension(n), intent(in, out), depend(n) :: s
+                end subroutine cardinal_sin
+        subroutine catalan(n,c) 
+                    integer intent(in) :: n
+                    integer dimension(1 + n), intent(in, out), depend(n) :: c
+                end subroutine catalan
+        function catalan_constant() 
+                    double precision :: catalan_constant
+                end function catalan_constant
+        subroutine catalan_row_next(ido,n,irow) 
+                    integer :: ido
+                    integer intent(in) :: n
+                    integer dimension(1 + n), intent(in, out), depend(n) :: irow
+                end subroutine catalan_row_next
+        subroutine catalan_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine catalan_values
+        subroutine charlier(n,a,x,value) 
+                    integer intent(in) :: n
+                    double precision :: a
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: value
+                end subroutine charlier
+        subroutine cheby_t_poly(m,n,x,cx) 
+                    integer intent(in) :: m
+                    integer intent(in) :: n
+                    double precision dimension(m), intent(in, out), depend(m) :: x
+                    double precision dimension(m,n + 1), intent(in, out), depend(m,n) :: cx
+                end subroutine cheby_t_poly
+        subroutine cheby_t_poly_coef(n,c) 
+                    integer intent(in) :: n
+                    double precision dimension(1 + n,1 + n), intent(in, out), depend(n) :: c
+                end subroutine cheby_t_poly_coef
+        subroutine cheby_t_poly_values(n_data,n,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: x
+                    double precision :: fx
+                end subroutine cheby_t_poly_values
+        subroutine cheby_t_poly_zero(n,z) 
+                    integer intent(in) :: n
+                    double precision dimension(n), intent(in, out), depend(n) :: z
+                end subroutine cheby_t_poly_zero
+        subroutine cheby_u_poly(m,n,x,cx) 
+                    integer intent(in) :: m
+                    integer intent(in) :: n
+                    double precision dimension(m), intent(in, out), depend(m) :: x
+                    double precision dimension(m,n + 1), intent(in, out), depend(m,n) :: cx
+                end subroutine cheby_u_poly
+        subroutine cheby_u_poly_coef(n,c) 
+                    integer intent(in) :: n
+                    double precision dimension(1 + n,1 + n), intent(in, out), depend(n) :: c
+                end subroutine cheby_u_poly_coef
+        subroutine cheby_u_poly_values(n_data,n,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: x
+                    double precision :: fx
+                end subroutine cheby_u_poly_values
+        subroutine cheby_u_poly_zero(n,z) 
+                    integer intent(in) :: n
+                    double precision dimension(n), intent(in, out), depend(n) :: z
+                end subroutine cheby_u_poly_zero
+        subroutine chebyshev_discrete(n,m,x,v) 
+                    integer intent(in) :: n
+                    integer :: m
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: v
+                end subroutine chebyshev_discrete
+        function collatz_count(n) 
+                    integer :: n
+                    integer :: collatz_count
+                end function collatz_count
+        subroutine collatz_count_max(n,i_max,j_max) 
+                    integer :: n
+                    integer :: i_max
+                    integer :: j_max
+                end subroutine collatz_count_max
+        subroutine collatz_count_values(n_data,n,count) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: count
+                end subroutine collatz_count_values
+        subroutine comb_row_next(n,row) 
+                    integer intent(in) :: n
+                    integer dimension(1 + n), intent(in, out), depend(n) :: row
+                end subroutine comb_row_next
+        subroutine commul(n,nfactor,factor,ncomb) 
+                    integer :: n
+                    integer intent(in) :: nfactor
+                    integer dimension(nfactor), intent(in, out), depend(nfactor) :: factor
+                    integer :: ncomb
+                end subroutine commul
+        subroutine complete_symmetric_poly(n,r,x,value) 
+                    integer intent(in) :: n
+                    integer :: r
+                    double precision dimension(n), intent(in, out), depend(n) :: x
+                    double precision :: value
+                end subroutine complete_symmetric_poly
+        function cos_power_int(a,b,n) 
+                    double precision :: a
+                    double precision :: b
+                    integer :: n
+                    double precision :: cos_power_int
+                end function cos_power_int
+        subroutine cos_power_int_values(n_data,a,b,n,fx) 
+                    integer :: n_data
+                    double precision :: a
+                    double precision :: b
+                    integer :: n
+                    double precision :: fx
+                end subroutine cos_power_int_values
+        subroutine delannoy(m,n,a) 
+                    integer intent(in) :: m
+                    integer intent(in) :: n
+                    integer dimension(1 + m,1 + n), intent(in, out), depend(m) :: a
+                end subroutine delannoy
+        subroutine erf_values(n_data,x,fx) 
+                    integer :: n_data
+                    double precision :: x
+                    double precision :: fx
+                end subroutine erf_values
+        subroutine euler_number(n,e) 
+                    integer intent(in) :: n
+                    integer dimension(1 + n), intent(in, out), depend(n) :: e
+                end subroutine euler_number
+        function euler_number2(n) 
+                    integer :: n
+                    double precision :: euler_number2
+                end function euler_number2
+        subroutine euler_number_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine euler_number_values
+        function euler_poly(n,x) 
+                    integer :: n
+                    double precision :: x
+                    double precision :: euler_poly
+                end function euler_poly
+        subroutine eulerian(n,e) 
+                    integer intent(in) :: n
+                    integer dimension(n,n), intent(in, out), depend(n) :: e
+                end subroutine eulerian
+        subroutine fibonacci_direct(n,f) 
+                    integer :: n
+                    integer :: f
+                end subroutine fibonacci_direct
+        subroutine fibonacci_floor(n,f,i) 
+                    integer :: n
+                    integer :: f
+                    integer :: i
+                end subroutine fibonacci_floor
+        subroutine fibonacci_recursive(n,f) 
+                    integer intent(in) :: n
+                    integer dimension(n), intent(in, out), depend(n) :: f
+                end subroutine fibonacci_recursive
+        subroutine gamma_log_values(n_data,x,fx) 
+                    integer :: n_data
+                    double precision :: x
+                    double precision :: fx
+                end subroutine gamma_log_values
+        subroutine gamma_values(n_data,x,fx) 
+                    integer :: n_data
+                    double precision :: x
+                    double precision :: fx
+                end subroutine gamma_values
+        subroutine gegenbauer_poly(n,alpha,x,cx) 
+                    integer intent(in) :: n
+                    double precision :: alpha
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine gegenbauer_poly
+        subroutine gegenbauer_poly_values(n_data,n,a,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: a
+                    double precision :: x
+                    double precision :: fx
+                end subroutine gegenbauer_poly_values
+        subroutine gen_hermite_poly(n,x,mu,p) 
+                    integer intent(in) :: n
+                    double precision :: x
+                    double precision :: mu
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: p
+                end subroutine gen_hermite_poly
+        subroutine gen_laguerre_poly(n,alpha,x,cx) 
+                    integer intent(in) :: n
+                    double precision :: alpha
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine gen_laguerre_poly
+        function gud(x) 
+                    double precision :: x
+                    double precision :: gud
+                end function gud
+        subroutine gud_values(n_data,x,fx) 
+                    integer :: n_data
+                    double precision :: x
+                    double precision :: fx
+                end subroutine gud_values
+        subroutine hermite_poly_phys(n,x,cx) 
+                    integer intent(in) :: n
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine hermite_poly_phys
+        subroutine hermite_poly_phys_coef(n,c) 
+                    integer intent(in) :: n
+                    double precision dimension(1 + n,1 + n), intent(in, out), depend(n) :: c
+                end subroutine hermite_poly_phys_coef
+        subroutine hermite_poly_phys_values(n_data,n,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: x
+                    double precision :: fx
+                end subroutine hermite_poly_phys_values
+        subroutine hyper_2f1_values(n_data,a,b,c,x,fx) 
+                    integer :: n_data
+                    double precision :: a
+                    double precision :: b
+                    double precision :: c
+                    double precision :: x
+                    double precision :: fx
+                end subroutine hyper_2f1_values
+        function i4_choose(n,k) 
+                    integer :: n
+                    integer :: k
+                    integer :: i4_choose
+                end function i4_choose
+        subroutine i4_factor(n,factor_max,factor_num,factor,power,nleft) 
+                    integer :: n
+                    integer intent(in) :: factor_max
+                    integer :: factor_num
+                    integer dimension(factor_max), intent(in, out), depend(factor_max) :: factor
+                    integer dimension(factor_max), intent(in, out), depend(factor_max) :: power
+                    integer :: nleft
+                end subroutine i4_factor
+        function i4_factorial(n) 
+                    integer :: n
+                    integer :: i4_factorial
+                end function i4_factorial
+        function i4_factorial2(n) 
+                    integer :: n
+                    integer :: i4_factorial2
+                end function i4_factorial2
+        subroutine i4_factorial2_values(n_data,n,fn) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: fn
+                end subroutine i4_factorial2_values
+        subroutine i4_factorial_values(n_data,n,fn) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: fn
+                end subroutine i4_factorial_values
+        function i4_huge() 
+                    integer :: i4_huge
+                end function i4_huge
+        function i4_is_prime(n) 
+                    integer :: n
+                    logical :: i4_is_prime
+                end function i4_is_prime
+        function i4_is_triangular(i) 
+                    integer :: i
+                    logical :: i4_is_triangular
+                end function i4_is_triangular
+        subroutine i4_partition_distinct_count(n,q) 
+                    integer :: n
+                    integer :: q
+                end subroutine i4_partition_distinct_count
+        subroutine i4_swap(i,j) 
+                    integer :: i
+                    integer :: j
+                end subroutine i4_swap
+        subroutine i4_to_triangle_lower(k,i,j) 
+                    integer :: k
+                    integer :: i
+                    integer :: j
+                end subroutine i4_to_triangle_lower
+        subroutine i4_to_triangle_upper(k,i,j) 
+                    integer :: k
+                    integer :: i
+                    integer :: j
+                end subroutine i4_to_triangle_upper
+        function i4_uniform_ab(a,b,seed) 
+                    integer :: a
+                    integer :: b
+                    integer :: seed
+                    integer :: i4_uniform_ab
+                end function i4_uniform_ab
+        subroutine i4mat_print(m,n,a,title) 
+                    integer intent(in) :: m
+                    integer intent(in) :: n
+                    integer dimension(m,n), intent(in, out), depend(m) :: a
+                    character*(*) :: title
+                end subroutine i4mat_print
+        subroutine i4mat_print_some(m,n,a,ilo,jlo,ihi,jhi,title) 
+                    integer intent(in) :: m
+                    integer intent(in) :: n
+                    integer dimension(m,n), intent(in, out), depend(m) :: a
+                    integer :: ilo
+                    integer :: jlo
+                    integer :: ihi
+                    integer :: jhi
+                    character*(*) :: title
+                end subroutine i4mat_print_some
+        subroutine jacobi_poly(n,alpha,beta,x,cx) 
+                    integer intent(in) :: n
+                    double precision :: alpha
+                    double precision :: beta
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine jacobi_poly
+        subroutine jacobi_poly_values(n_data,n,a,b,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: a
+                    double precision :: b
+                    double precision :: x
+                    double precision :: fx
+                end subroutine jacobi_poly_values
+        subroutine jacobi_symbol(q,p,j) 
+                    integer :: q
+                    integer :: p
+                    integer :: j
+                end subroutine jacobi_symbol
+        subroutine krawtchouk(n,p,x,m,v) 
+                    integer intent(in) :: n
+                    double precision :: p
+                    double precision :: x
+                    integer :: m
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: v
+                end subroutine krawtchouk
+        subroutine laguerre_associated(n,m,x,cx) 
+                    integer intent(in) :: n
+                    integer :: m
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine laguerre_associated
+        subroutine laguerre_poly(n,x,cx) 
+                    integer intent(in) :: n
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine laguerre_poly
+        subroutine laguerre_poly_coef(n,c) 
+                    integer intent(in) :: n
+                    double precision dimension(1 + n,1 + n), intent(in, out), depend(n) :: c
+                end subroutine laguerre_poly_coef
+        subroutine laguerre_polynomial_values(n_data,n,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: x
+                    double precision :: fx
+                end subroutine laguerre_polynomial_values
+        function lambert_w(x) 
+                    double precision :: x
+                    double precision :: lambert_w
+                end function lambert_w
+        function lambert_w_crude(x) 
+                    double precision :: x
+                    double precision :: lambert_w_crude
+                end function lambert_w_crude
+        subroutine lambert_w_values(n_data,x,fx) 
+                    integer :: n_data
+                    double precision :: x
+                    double precision :: fx
+                end subroutine lambert_w_values
+        subroutine legendre_associated(n,m,x,cx) 
+                    integer intent(in) :: n
+                    integer :: m
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine legendre_associated
+        subroutine legendre_associated_normalized(n,m,x,cx) 
+                    integer intent(in) :: n
+                    integer :: m
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine legendre_associated_normalized
+        subroutine legendre_associated_normalized_sphere_values(n_data,n,m,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: m
+                    double precision :: x
+                    double precision :: fx
+                end subroutine legendre_associated_normalized_sphere_values
+        subroutine legendre_associated_values(n_data,n,m,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: m
+                    double precision :: x
+                    double precision :: fx
+                end subroutine legendre_associated_values
+        subroutine legendre_function_q(n,x,cx) 
+                    integer intent(in) :: n
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                end subroutine legendre_function_q
+        subroutine legendre_function_q_values(n_data,n,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: x
+                    double precision :: fx
+                end subroutine legendre_function_q_values
+        subroutine legendre_poly(n,x,cx,cpx) 
+                    integer intent(in) :: n
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cx
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: cpx
+                end subroutine legendre_poly
+        subroutine legendre_poly_coef(n,c) 
+                    integer intent(in) :: n
+                    double precision dimension(1 + n,1 + n), intent(in, out), depend(n) :: c
+                end subroutine legendre_poly_coef
+        subroutine legendre_poly_values(n_data,n,x,fx) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: x
+                    double precision :: fx
+                end subroutine legendre_poly_values
+        subroutine legendre_symbol(q,p,l) 
+                    integer :: q
+                    integer :: p
+                    integer :: l
+                end subroutine legendre_symbol
+        function lerch(z,s,a) 
+                    double precision :: z
+                    integer :: s
+                    double precision :: a
+                    double precision :: lerch
+                end function lerch
+        subroutine lerch_values(n_data,z,s,a,fx) 
+                    integer :: n_data
+                    double precision :: z
+                    integer :: s
+                    double precision :: a
+                    double precision :: fx
+                end subroutine lerch_values
+        subroutine lock(n,a) 
+                    integer intent(in) :: n
+                    integer dimension(1 + n), intent(in, out), depend(n) :: a
+                end subroutine lock
+        subroutine meixner(n,beta,c,x,v) 
+                    integer intent(in) :: n
+                    double precision :: beta
+                    double precision :: c
+                    double precision :: x
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: v
+                end subroutine meixner
+        function mertens(n) 
+                    integer :: n
+                    integer :: mertens
+                end function mertens
+        subroutine mertens_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine mertens_values
+        subroutine moebius(n,mu) 
+                    integer :: n
+                    integer :: mu
+                end subroutine moebius
+        subroutine moebius_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine moebius_values
+        subroutine motzkin(n,a) 
+                    integer intent(in) :: n
+                    integer dimension(1 + n), intent(in, out), depend(n) :: a
+                end subroutine motzkin
+        function normal_01_cdf_inverse(p) 
+                    double precision :: p
+                    double precision :: normal_01_cdf_inverse
+                end function normal_01_cdf_inverse
+        subroutine normal_01_cdf_values(n_data,x,fx) 
+                    integer :: n_data
+                    double precision :: x
+                    double precision :: fx
+                end subroutine normal_01_cdf_values
+        subroutine omega(n,ndiv) 
+                    integer :: n
+                    integer :: ndiv
+                end subroutine omega
+        subroutine omega_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine omega_values
+        subroutine partition_distinct_count_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine partition_distinct_count_values
+        subroutine pentagon_num(n,p) 
+                    integer :: n
+                    integer :: p
+                end subroutine pentagon_num
+        subroutine phi(n,phin) 
+                    integer :: n
+                    integer :: phin
+                end subroutine phi
+        subroutine phi_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine phi_values
+        function plane_partition_num(n) 
+                    integer :: n
+                    integer :: plane_partition_num
+                end function plane_partition_num
+        subroutine poly_bernoulli(n,k,b) 
+                    integer :: n
+                    integer :: k
+                    integer :: b
+                end subroutine poly_bernoulli
+        function poly_coef_count(dim,degree) 
+                    integer :: dim
+                    integer :: degree
+                    integer :: poly_coef_count
+                end function poly_coef_count
+        function prime(n) 
+                    integer :: n
+                    integer :: prime
+                end function prime
+        subroutine psi_values(n_data,x,fx) 
+                    integer :: n_data
+                    double precision :: x
+                    double precision :: fx
+                end subroutine psi_values
+        function pyramid_num(n) 
+                    integer :: n
+                    integer :: pyramid_num
+                end function pyramid_num
+        function pyramid_square_num(n) 
+                    integer :: n
+                    integer :: pyramid_square_num
+                end function pyramid_square_num
+        function r8_agm(a,b) 
+                    double precision :: a
+                    double precision :: b
+                    double precision :: r8_agm
+                end function r8_agm
+        function r8_beta(x,y) 
+                    double precision :: x
+                    double precision :: y
+                    double precision :: r8_beta
+                end function r8_beta
+        function r8_choose(n,k) 
+                    integer :: n
+                    integer :: k
+                    double precision :: r8_choose
+                end function r8_choose
+        function r8_epsilon() 
+                    double precision :: r8_epsilon
+                end function r8_epsilon
+        function r8_erf(x) 
+                    double precision :: x
+                    double precision :: r8_erf
+                end function r8_erf
+        function r8_erf_inverse(y) 
+                    double precision :: y
+                    double precision :: r8_erf_inverse
+                end function r8_erf_inverse
+        function r8_euler_constant() 
+                    double precision :: r8_euler_constant
+                end function r8_euler_constant
+        function r8_factorial(n) 
+                    integer :: n
+                    double precision :: r8_factorial
+                end function r8_factorial
+        function r8_factorial_log(n) 
+                    integer :: n
+                    double precision :: r8_factorial_log
+                end function r8_factorial_log
+        subroutine r8_factorial_log_values(n_data,n,fn) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: fn
+                end subroutine r8_factorial_log_values
+        subroutine r8_factorial_values(n_data,n,fn) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: fn
+                end subroutine r8_factorial_values
+        function r8_gamma_log(x) 
+                    double precision :: x
+                    double precision :: r8_gamma_log
+                end function r8_gamma_log
+        function r8_huge() 
+                    double precision :: r8_huge
+                end function r8_huge
+        subroutine r8_hyper_2f1(a_input,b_input,c_input,x_input,hf) 
+                    double precision :: a_input
+                    double precision :: b_input
+                    double precision :: c_input
+                    double precision :: x_input
+                    double precision :: hf
+                end subroutine r8_hyper_2f1
+        function r8_mop(i) 
+                    integer :: i
+                    double precision :: r8_mop
+                end function r8_mop
+        function r8_nint(x) 
+                    double precision :: x
+                    integer :: r8_nint
+                end function r8_nint
+        function r8_pi() 
+                    double precision :: r8_pi
+                end function r8_pi
+        function r8_psi(xx) 
+                    double precision :: xx
+                    double precision :: r8_psi
+                end function r8_psi
+        function r8_uniform_01(seed) 
+                    integer :: seed
+                    double precision :: r8_uniform_01
+                end function r8_uniform_01
+        function r8poly_degree(na,a) 
+                    integer intent(in) :: na
+                    double precision dimension(1 + na), intent(in, out), depend(na) :: a
+                    integer :: r8poly_degree
+                end function r8poly_degree
+        subroutine r8poly_print(n,a,title) 
+                    integer intent(in) :: n
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: a
+                    character*( * ) :: title
+                end subroutine r8poly_print
+        function r8poly_value_horner(m,c,x) 
+                    integer intent(in) :: m
+                    double precision dimension(1 + m), intent(in, out), depend(m) :: c
+                    double precision :: x
+                    double precision :: r8poly_value_horner
+                end function r8poly_value_horner
+        subroutine r8vec_linspace(n,a,b,x) 
+                    integer intent(in) :: n
+                    double precision :: a
+                    double precision :: b
+                    double precision dimension(n), intent(in, out), depend(n) :: x
+                end subroutine r8vec_linspace
+        subroutine r8vec_print(n,a,title) 
+                    integer intent(in) :: n
+                    double precision dimension(n), intent(in, out), depend(n) :: a
+                    character*(*) :: title
+                end subroutine r8vec_print
+        subroutine r8vec_print_some(n,a,max_print,title) 
+                    integer intent(in) :: n
+                    double precision dimension(n), intent(in, out), depend(n) :: a
+                    integer :: max_print
+                    character*(*) :: title
+                end subroutine r8vec_print_some
+        subroutine r8vec_uniform_ab(n,a,b,seed,r) 
+                    integer intent(in) :: n
+                    double precision :: a
+                    double precision :: b
+                    integer :: seed
+                    double precision dimension(n), intent(in, out), depend(n) :: r
+                end subroutine r8vec_uniform_ab
+        function s_len_trim(s) 
+                    character*(*) :: s
+                    integer :: s_len_trim
+                end function s_len_trim
+        subroutine sigma(n,sigma_n) 
+                    integer :: n
+                    integer :: sigma_n
+                end subroutine sigma
+        subroutine sigma_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine sigma_values
+        function simplex_num(m,n) 
+                    integer :: m
+                    integer :: n
+                    integer :: simplex_num
+                end function simplex_num
+        function sin_power_int(a,b,n) 
+                    double precision :: a
+                    double precision :: b
+                    integer :: n
+                    double precision :: sin_power_int
+                end function sin_power_int
+        subroutine sin_power_int_values(n_data,a,b,n,fx) 
+                    integer :: n_data
+                    double precision :: a
+                    double precision :: b
+                    integer :: n
+                    double precision :: fx
+                end subroutine sin_power_int_values
+        subroutine slice(dim_num,slice_num,piece_num) 
+                    integer :: dim_num
+                    integer :: slice_num
+                    integer :: piece_num
+                end subroutine slice
+        subroutine spherical_harmonic(l,m,theta,phi,c,s) 
+                    integer intent(in) :: l
+                    integer :: m
+                    double precision :: theta
+                    double precision :: phi
+                    double precision dimension(1 + l), intent(in, out), depend(l) :: c
+                    double precision dimension(1 + l), intent(in, out), depend(l) :: s
+                end subroutine spherical_harmonic
+        subroutine spherical_harmonic_values(n_data,l,m,theta,phi,yr,yi) 
+                    integer :: n_data
+                    integer :: l
+                    integer :: m
+                    double precision :: theta
+                    double precision :: phi
+                    double precision :: yr
+                    double precision :: yi
+                end subroutine spherical_harmonic_values
+        subroutine stirling1(n,m,s1) 
+                    integer intent(in) :: n
+                    integer intent(in) :: m
+                    integer dimension(n,m), intent(in, out), depend(n,m) :: s1
+                end subroutine stirling1
+        subroutine stirling2(n,m,s2) 
+                    integer intent(in) :: n
+                    integer intent(in) :: m
+                    integer dimension(n,m), intent(in, out), depend(n,m) :: s2
+                end subroutine stirling2
+        subroutine tau(n,taun) 
+                    integer :: n
+                    integer :: taun
+                end subroutine tau
+        subroutine tau_values(n_data,n,c) 
+                    integer :: n_data
+                    integer :: n
+                    integer :: c
+                end subroutine tau_values
+        function tetrahedron_num(n) 
+                    integer :: n
+                    integer :: tetrahedron_num
+                end function tetrahedron_num
+        subroutine timestamp 
+                end subroutine timestamp
+        subroutine triangle_lower_to_i4(i,j,k) 
+                    integer :: i
+                    integer :: j
+                    integer :: k
+                end subroutine triangle_lower_to_i4
+        function triangle_num(n) 
+                    integer :: n
+                    integer :: triangle_num
+                end function triangle_num
+        subroutine triangle_upper_to_i4(i,j,k) 
+                    integer :: i
+                    integer :: j
+                    integer :: k
+                end subroutine triangle_upper_to_i4
+        function trinomial(i,j,k) 
+                    integer :: i
+                    integer :: j
+                    integer :: k
+                    integer :: trinomial
+                end function trinomial
+        subroutine vibonacci(n,seed,v) 
+                    integer intent(in) :: n
+                    integer :: seed
+                    integer dimension(n), intent(in, out), depend(n) :: v
+                end subroutine vibonacci
+        subroutine zeckendorf(n,m_max,m,i_list,f_list) 
+                    integer :: n
+                    integer intent(in) :: m_max
+                    integer :: m
+                    integer dimension(m_max), intent(in, out), depend(m_max) :: i_list
+                    integer dimension(m_max), intent(in, out), depend(m_max) :: f_list
+                end subroutine zeckendorf
+        subroutine zernike_poly(m,n,rho,z) 
+                    integer :: m
+                    integer :: n
+                    double precision :: rho
+                    double precision :: z
+                end subroutine zernike_poly
+        subroutine zernike_poly_coef(m,n,c) 
+                    integer :: m
+                    integer intent(in) :: n
+                    double precision dimension(1 + n), intent(in, out), depend(n) :: c
+                end subroutine zernike_poly_coef
+        function zeta(p) 
+                    double precision :: p
+                    double precision :: zeta
+                end function zeta
+        subroutine zeta_values(n_data,n,zeta) 
+                    integer :: n_data
+                    integer :: n
+                    double precision :: zeta
+                end subroutine zeta_values
+    end interface 
+end python module polpack
