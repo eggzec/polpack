@@ -4,6 +4,7 @@
 
 [![Tests](https://github.com/eggzec/polpack/actions/workflows/test.yml/badge.svg)](https://github.com/eggzec/polpack/actions/workflows/test.yml)
 [![Documentation](https://github.com/eggzec/polpack/actions/workflows/docs.yml/badge.svg)](https://github.com/eggzec/polpack/actions/workflows/docs.yml)
+[![codecov](https://codecov.io/github/eggzec/polpack/graph/badge.svg)](https://codecov.io/github/eggzec/polpack)
 
 [![License: LGPL-2.1](https://img.shields.io/badge/License-LGPL%202.1-blue.svg)](LICENSE)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/polpack.svg?label=PyPI%20downloads)](https://pypi.org/project/polpack/)
