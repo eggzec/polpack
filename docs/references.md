@@ -1,34 +1,133 @@
 # References
 
-The algorithms implemented in `polpack` are based on established mathematical literature and numerical libraries.
+## Core Mathematical References
 
-## Key Sources
+1. **Abramowitz, M., Stegun, I.**
+   *Handbook of Mathematical Functions*.
+   National Bureau of Standards, 1964.
 
-1. **Abramowitz, M. and Stegun, I. A. (Eds.).** *Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables*. National Bureau of Standards Applied Mathematics Series, 55. U.S. Government Printing Office, 1972.
-2. **Burkardt, John.** *polpack: Mathematical functions, polynomial families, and sequences*. [Original Fortran versions](https://people.sc.fsu.edu/~jburkardt/f_src/polpak/polpak.html).
-3. **Knuth, Donald E.** *The Art of Computer Programming, Volume 1: Fundamental Algorithms*. Addison-Wesley, 1997. (For combinatorial sequences).
-4. **Press, W. H., et al.** *Numerical Recipes: The Art of Scientific Computing*. Cambridge University Press, 2007.
+2. **Chihara, T.**
+   *An Introduction to Orthogonal Polynomials*.
+   Gordon and Breach, 1978.
 
-## Specific Algorithms
+3. **Gautschi, W.**
+   *Orthogonal Polynomials: Computation and Approximation*.
+   Oxford, 2004.
 
-- **Chebyshev Polynomials:** Based on standard recurrences and zeroes from approximation theory.
-- **Lambert W Function:** Implementation follows iterative methods for real-valued branches.
-- **RNG:** Standard Lehmer (Park-Miller) linear congruential generator for seeded random numbers.
+4. **Szego, G.**
+   *Orthogonal Polynomials*.
+   American Mathematical Society, 1992.
 
-3. Frank Benford, **The Law of Anomalous Numbers**, Proceedings of the American Philosophical Society, Vol. 78, 1938, pages 551-572.
-4. Paul Bratley, Bennett Fox, Linus Schrage, **A Guide to Simulation**, Second Edition, Springer, 1987, ISBN: 0387964673.
-5. Chad Brewbaker, **Lonesum (0,1)-matrices and poly-Bernoulli numbers of negative index**, Master of Science Thesis, Computer Science Department, Iowa State University, 2005.
-6. William Briggs, Van Emden Henson, **The DFT: An Owner's Manual for the Discrete Fourier Transform**, SIAM, 1995, ISBN13: 978-0-898713-42-8.
-7. Theodore Chihara, **An Introduction to Orthogonal Polynomials**, Gordon and Breach, 1978, ISBN: 0677041500.
-8. William Cody, **Rational Chebyshev Approximations for the Error Function**, Mathematics of Computation, Vol. 23, No. 107, July 1969, pages 631-638.
-9. Robert Corless, Gaston Gonnet, David Hare, David Jeffrey, Donald Knuth, **On the Lambert W Function**, Advances in Computational Mathematics, Vol. 5, No. 1, Dec 1996, pages 329-359.
-10. Bennett Fox, **Algorithm 647: Implementation and Relative Efficiency of Quasirandom Sequence Generators**, ACM Transactions on Mathematical Software, Vol. 12, No. 4, Dec 1986, pages 362-376.
-11. Walter Gautschi, **Orthogonal Polynomials: Computation and Approximation**, Oxford, 2004, ISBN: 0-19-850672-4.
-12. Brian Hayes, **The Vibonacci Numbers**, American Scientist, Vol. 87, No. 4, July-August 1999, pages 296-301.
-13. Douglas Hofstadter, **Goedel, Escher, Bach**, Basic Books, 1979, ISBN: 0465026567.
-14. Masanobu Kaneko, **Poly-Bernoulli Numbers**, Journal Theorie des Nombres Bordeaux, Vol. 9, No. 1, 1997, pages 221-228.
-15. Thomas Osler, **Cardan Polynomials and the Reduction of Radicals**, Mathematics Magazine, Vol. 74, No. 1, Feb 2001, pages 26-32.
-16. Gabor Szego, **Orthogonal Polynomials**, American Mathematical Society, 1992, ISBN: 0821810235.
-17. Divakar Viswanath, **Random Fibonacci sequences and the number 1.13198824**, Mathematics of Computation, Vol. 69, No. 231, July 2000, pages 1131-1155.
-18. Eric Weisstein, **CRC Concise Encyclopedia of Mathematics**, CRC Press, 2002, ISBN: 1584883472.
-19. Shanjie Zhang, Jianming Jin, **Computation of Special Functions**, Wiley, 1996, ISBN: 0-471-11963-6.
+5. **Zhang, S., Jin, J.**
+   *Computation of Special Functions*.
+   Wiley, 1996.
+
+6. **Knuth, D.**
+   *The Art of Computer Programming, Volume 2: Seminumerical Algorithms*.
+   Addison-Wesley, 1997.
+
+## Specialized Literature
+
+7. **Banks, R.**
+   *Slicing Pizzas, Racing Turtles, and Further Adventures in Applied Mathematics*.
+   Princeton, 1999.
+
+8. **Benford, F.**
+   “The Law of Anomalous Numbers.”
+   *Proceedings of the American Philosophical Society*, 78, 1938.
+
+9. **Bratley, P., Fox, B., Schrage, L.**
+   *A Guide to Simulation*.
+   Second Edition, Springer, 1987.
+
+10. **Brewbaker, C.**
+    “Lonesum (0,1)-matrices and poly-Bernoulli numbers of negative index.”
+    *Master of Science Thesis*, Iowa State University, 2005.
+
+11. **Briggs, W., Henson, V.**
+    *The DFT: An Owner's Manual for the Discrete Fourier Transform*.
+    SIAM, 1995.
+
+12. **Cody, W.**
+    “Rational Chebyshev Approximations for the Error Function.”
+    *Mathematics of Computation*, 23(107), 1969.
+
+13. **Corless, R., Gonnet, G., Hare, D., Jeffrey, D., Knuth, D.**
+    “On the Lambert W Function.”
+    *Advances in Computational Mathematics*, 5(1), 1996.
+
+14. **Fox, B.**
+    “Algorithm 647: Implementation and Relative Efficiency of Quasirandom Sequence Generators.”
+    *ACM Transactions on Mathematical Software*, 12(4), 1986.
+
+15. **Hartley, R.**
+    “A More Symmetrical Fourier Analysis Applied to Transmission Problems.”
+    *Proceedings of the Institute of Radio Engineers*, 30, 1942.
+
+16. **Hayes, B.**
+    “The Vibonacci Numbers.”
+    *American Scientist*, 87(4), 1999.
+
+17. **Hill, T.**
+    “The First Digit Phenomenon.”
+    *American Scientist*, 86(4), 1998.
+
+18. **Hofstadter, D.**
+    *Goedel, Escher, Bach*.
+    Basic Books, 1979.
+
+19. **Kaneko, M.**
+    “Poly-Bernoulli Numbers.”
+    *Journal Theorie des Nombres Bordeaux*, 9(1), 1997.
+
+20. **Osler, T.**
+    “Cardan Polynomials and the Reduction of Radicals.”
+    *Mathematics Magazine*, 74(1), 2001.
+
+21. **Pereira, J.**
+    “Algorithm 234: Poisson-Charliers Polynomials.”
+    *Communications of the ACM*, 7(7), 1964.
+
+22. **Pinter, C.**
+    *A Book of Abstract Algebra*.
+    Second Edition, McGraw Hill, 2003.
+
+23. **Raimi, R.**
+    “The Peculiar Distribution of First Digits.”
+    *Scientific American*, 1969.
+
+24. **Stanton, D., White, D.**
+    *Constructive Combinatorics*.
+    Springer, 1986.
+
+25. **Velleman, D., Call, G.**
+    “Permutations and Combination Locks.”
+    *Mathematics Magazine*, 68(4), 1995.
+
+26. **Viswanath, D.**
+    “Random Fibonacci sequences and the number 1.13198824.”
+    *Mathematics of Computation*, 69(231), 2000.
+
+27. **Waterman, M.**
+    *Introduction to Computational Biology*.
+    Chapman and Hall, 1995.
+
+28. **Weisstein, E.**
+    *CRC Concise Encyclopedia of Mathematics*.
+    Second Edition, CRC Press, 2002.
+
+29. **Wolfram, S.**
+    *The Mathematica Book*.
+    Fourth Edition, Cambridge University Press, 1999.
+
+30. **Wolfson, M., Wright, H.**
+    “ACM Algorithm 160: Combinatorial of M Things Taken N at a Time.”
+    *Communications of the ACM*, 6(4), 1963.
+
+31. **Zwillinger, D. (ed.)**
+    *CRC Standard Mathematical Tables and Formulae*.
+    30th Edition, CRC Press, 1996.
+
+---
+
+*Last revised on 11 April 2015.*
