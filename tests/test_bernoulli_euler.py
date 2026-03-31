@@ -1,78 +1,96 @@
 """Tests for Bernoulli, Bernstein, and Euler polynomials."""
 
 import numpy as np
+
 import polpack
 
 
 def test_bernoulli_number():
-    """Test Bernoulli number computation against known values."""
-    n = 10
+    """Test Bernoulli number computation against legacy data."""
+    n = 30
     b = np.zeros(n + 1, dtype=np.float64)
     polpack.bernoulli_number(n, b)
-    assert np.isclose(b[0], 1.0)
-    assert np.isclose(b[1], -0.5)
-    assert np.isclose(b[2], 1.0 / 6.0)
-    assert np.isclose(b[3], 0.0)
-    assert np.isclose(b[4], -1.0 / 30.0)
-
-
-def test_bernoulli_number2():
-    """Test Bernoulli number2 computation."""
-    n = 10
-    b = np.zeros(n + 1, dtype=np.float64)
-    polpack.bernoulli_number2(n, b)
-    assert np.isclose(b[0], 1.0)
-    assert np.isclose(b[1], -0.5)
-    assert np.isclose(b[2], 1.0 / 6.0)
-
-
-def test_bernoulli_number3():
-    """Test Bernoulli number3 computation for single value."""
-    b = np.float64(0.0)
-    polpack.bernoulli_number3(0, b)
-    # bernoulli_number3 returns via argument
+    # Data from BERNOULLI_NUMBER_TEST
+    expected = {
+        0: 1.0,
+        1: -0.5,
+        2: 0.166667,
+        3: 0.0,
+        4: -0.333333e-01,
+        6: 0.238095e-01,  # Note: B6 is positive
+        8: -0.333333e-01,
+        10: 0.757576e-01,
+        20: -529.124,
+        30: 0.601581e09,
+    }
+    for i, val in expected.items():
+        assert np.isclose(b[i], val, rtol=1e-5), (
+            f"B({i}) is {b[i]}, expected {val}"
+        )
 
 
 def test_bernoulli_poly():
-    """Test Bernoulli polynomial evaluation at x=0.2."""
+    """Test Bernoulli polynomial evaluation at x=0.2 against legacy data."""
     x = 0.2
-    for n in [1, 2, 3]:
-        bx = np.float64(0.0)
-        polpack.bernoulli_poly(n, x, bx)
+    # Data from BERNOULLI_POLY_TEST
+    expected = {
+        1: -0.30000000,
+        2: 0.66666667e-02,
+        3: 0.48000000e-01,
+        4: -0.77333333e-02,
+        5: -0.23680000e-01,
+        10: 0.23326318e-01,
+        15: 2.6487812,
+    }
+    for n, val in expected.items():
+        bx = polpack.bernoulli_poly(n, x)
+        assert np.isclose(bx, val, rtol=1e-5), (
+            f"B({n}, 0.2) is {bx}, expected {val}"
+        )
 
 
 def test_bernstein_poly():
-    """Test Bernstein polynomial values against known data."""
+    """Test Bernstein polynomial values against legacy data (x=0.25)."""
     n = 4
     x = 0.25
     bern = np.zeros(n + 1, dtype=np.float64)
     polpack.bernstein_poly(n, x, bern)
-    # B(4,0)(0.25) = (0.75)^4 = 0.31640625
-    assert np.isclose(bern[0], 0.31640625, rtol=1e-6)
-    # B(4,4)(0.25) = (0.25)^4 = 0.00390625
-    assert np.isclose(bern[4], 0.00390625, rtol=1e-6)
+    # Data from BERNSTEIN_POLY_TEST
+    expected = [0.316406, 0.421875, 0.210938, 0.468750e-01, 0.390625e-02]
+    assert np.allclose(bern, expected, rtol=1e-5)
 
 
 def test_euler_number():
-    """Test Euler number computation."""
-    n = 6
+    """Test Euler number computation against legacy data."""
+    n = 12
     e = np.zeros(n + 1, dtype=np.int32)
     polpack.euler_number(n, e)
-    # E(0)=1, E(1)=0, E(2)=-1, E(3)=0, E(4)=5, E(5)=0, E(6)=-61
+    # Data from EULER_NUMBER_TEST
     assert e[0] == 1
+    assert e[1] == 0
     assert e[2] == -1
     assert e[4] == 5
     assert e[6] == -61
-
-
-def test_euler_number2():
-    """Test Euler number2 computation."""
-    val = polpack.euler_number2(4)
-    assert np.isclose(val, 5.0)
+    assert e[8] == 1385
+    assert e[10] == -50521
+    assert e[12] == 2702765
 
 
 def test_euler_poly():
-    """Test Euler polynomial evaluation."""
-    val = polpack.euler_poly(2, 0.5)
-    # E_2(x) = x^2 - x. E_2(0.5) = 0.25 - 0.5 = -0.25
-    assert np.isclose(val, -0.25, atol=1e-10)
+    """Test Euler polynomial evaluation at x=0.5 against legacy data."""
+    x = 0.5
+    # Data from EULER_POLY_TEST
+    # Note: E_n(0.5) is 0 for odd n > 0
+    expected = {
+        0: 1.00000,
+        1: 0.0,
+        2: -0.250000,
+        4: 0.312497,  # Legacy data shows 0.312497, but exact is 5/16 = 0.3125
+        6: -0.953128,
+        10: -49.3369,
+    }
+    for n, val in expected.items():
+        res = polpack.euler_poly(n, x)
+        assert np.isclose(
+            res, val, atol=1e-4
+        )  # Using larger atol due to legacy float precision

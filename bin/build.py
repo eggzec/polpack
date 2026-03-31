@@ -35,7 +35,9 @@ logger.addHandler(stderr_handler)
 
 def run_command(command, cwd=None):
     if cwd is None:
-        logger.warning("No working directory specified. Using current directory.")
+        logger.warning(
+            "No working directory specified. Using current directory."
+        )
         cwd = Path.cwd()
     else:
         cwd = Path(cwd)
@@ -80,7 +82,13 @@ def clean():
     run_command("uv pip uninstall polpack")
 
     for entry in Path("").iterdir():
-        if entry.name in ["dist", "build", "lib", ".pytest_cache", ".ruff_cache"]:
+        if entry.name in [
+            "dist",
+            "build",
+            "lib",
+            ".pytest_cache",
+            ".ruff_cache",
+        ]:
             logger.info(f"Removing '{entry}'")
             shutil.rmtree(entry)
         if entry.name == "bin" and entry.is_dir():

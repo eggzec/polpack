@@ -56,10 +56,10 @@ import numpy as np
 import polpack
 
 # 1. Configuration
-m = 1          # Number of points
-n = 5          # Highest degree
-x = 0.5        # Evaluation point
-v = np.zeros(n + 1, dtype=np.float64, order='F')
+m = 1  # Number of points
+n = 5  # Highest degree
+x = 0.5  # Evaluation point
+v = np.zeros(n + 1, dtype=np.float64, order="F")
 
 # 2. Evaluation
 polpack.cheby_t_poly(m, n, x, v)
@@ -82,9 +82,9 @@ import polpack
 # 1. Evaluate Legendre polynomials P_0 to P_10 at x=0.0
 n = 10
 x = 0.0
-p = np.zeros(n + 1, dtype=np.float64, order='F')
+p = np.zeros(n + 1, dtype=np.float64, order="F")
 # Output array for first derivatives (not used here)
-dp = np.zeros(n + 1, dtype=np.float64, order='F')
+dp = np.zeros(n + 1, dtype=np.float64, order="F")
 
 polpack.legendre_poly(n, x, p, dp)
 
@@ -105,15 +105,15 @@ import polpack
 
 # 1. Compute the first 15 Bell numbers
 n = 14
-b = np.zeros(n + 1, dtype=np.int32, order='F')
+b = np.zeros(n + 1, dtype=np.int32, order="F")
 
 polpack.bell(n, b)
 
 # Evaluate the 5th Legendre polynomial at x = 0.5
 n = 5
 x = 0.5
-cx = np.zeros(n + 1, dtype=np.float64, order='F')
-cpx = np.zeros(n + 1, dtype=np.float64, order='F') # for derivatives
+cx = np.zeros(n + 1, dtype=np.float64, order="F")
+cpx = np.zeros(n + 1, dtype=np.float64, order="F")  # for derivatives
 
 polpack.legendre_poly(n, x, cx, cpx)
 
@@ -130,7 +130,7 @@ import polpack
 # Get coefficients of the 4th-order Chebyshev polynomial T_4(x)
 n = 4
 # Space for (n+1) x (n+1) coefficient matrix
-c = np.zeros((n + 1, n + 1), dtype=np.float64, order='F')
+c = np.zeros((n + 1, n + 1), dtype=np.float64, order="F")
 polpack.cheby_t_poly_coef(n, c)
 
 print("Chebyshev T_4 coefficients (highest power first):")

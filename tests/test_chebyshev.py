@@ -1,6 +1,7 @@
 """Tests for Chebyshev polynomials (T and U)."""
 
 import numpy as np
+
 import polpack
 
 

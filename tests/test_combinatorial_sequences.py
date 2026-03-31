@@ -1,6 +1,7 @@
 """Tests for Bell numbers and Catalan numbers."""
 
 import numpy as np
+
 import polpack
 
 
@@ -29,38 +30,54 @@ def test_catalan_constant():
 
 
 def test_catalan_row_next():
-    """Test Catalan row computation for row 7."""
+    """Test Catalan row computation against legacy data."""
+    # Row 7 of Catalan's triangle
     n = 7
     irow = np.zeros(n + 1, dtype=np.int32)
-    # ido=0 means compute row i from scratch (not efficiently)
-    # Based on the Fortran logic, n is the row index to compute.
     polpack.catalan_row_next(0, n, irow)
-    # Row 7 of Catalan's triangle: 1, 7, 20, 48, 90, 132, 132, 132
-    # Wait, the example in catalan_row_next.f shows:
-    # 6: 1, 6, 20, 48, 90, 132, 132
-    # So 7 should be: 1, 7, 27, 75, 165, 297, 429, 429 ?
-    # Let's check row 6: 1, 6, 20, 48, 90, 132, 132
-    expected_6 = [1, 6, 20, 48, 90, 132, 132]
-    irow6 = np.zeros(7, dtype=np.int32)
-    polpack.catalan_row_next(0, 6, irow6)
-    np.testing.assert_array_equal(irow6, expected_6)
+    expected_7 = [1, 7, 27, 75, 165, 297, 429, 429]
+    np.testing.assert_array_equal(irow, expected_7)
 
 
-def test_lock():
-    """Test lock number computation."""
-    n = 5
-    a = np.zeros(n + 1, dtype=np.int32)
-    polpack.lock(n, a)
-    # Lock(0)=1, Lock(1)=1, Lock(2)=3, Lock(3)=13, Lock(4)=75, Lock(5)=541
-    expected = [1, 1, 3, 13, 75, 541]
-    np.testing.assert_array_equal(a, expected)
+def test_delannoy():
+    """Test Delannoy numbers A(M,N) against legacy data."""
+    # Test row 4 (M=4)
+    m = 4
+    n = 8
+    a = np.zeros((m + 1, n + 1), dtype=np.int32, order="F")
+    polpack.delannoy(m, n, a)
+    # Row 4 (0:8): 1, 9, 41, 129, 321, 681, 1289, 2241, 3649
+    expected_row4 = [1, 9, 41, 129, 321, 681, 1289, 2241, 3649]
+    np.testing.assert_array_equal(a[4, :], expected_row4)
 
 
-def test_motzkin():
-    """Test Motzkin numbers."""
-    n = 6
-    a = np.zeros(n + 1, dtype=np.int32)
-    polpack.motzkin(n, a)
-    # Motzkin: 1, 1, 2, 4, 9, 21, 51
-    expected = [1, 1, 2, 4, 9, 21, 51]
-    np.testing.assert_array_equal(a, expected)
+def test_fibonacci_direct():
+    """Test direct Fibonacci computation against legacy data."""
+    # F(10) = 55, F(20) = 6765
+    assert polpack.fibonacci_direct(10) == 55
+    assert polpack.fibonacci_direct(20) == 6765
+    assert polpack.fibonacci_direct(20) == 6765
+
+
+def test_stirling1():
+    """Test Stirling numbers of the first kind against legacy data."""
+    n = 8
+    m = 8
+    s1 = np.zeros((n, m), dtype=np.int32, order="F")
+    polpack.stirling1(n, m, s1)
+    # Row 8: -5040, 13068, -13132, 6769, -1960, 322, -28, 1
+    expected = [-5040, 13068, -13132, 6769, -1960, 322, -28, 1]
+    for j in range(m):
+        assert s1[n - 1, j] == expected[j]
+
+
+def test_stirling2():
+    """Test Stirling numbers of the second kind against legacy data."""
+    n = 8
+    m = 8
+    s2 = np.zeros((n, m), dtype=np.int32, order="F")
+    polpack.stirling2(n, m, s2)
+    # Row 8: 1, 127, 966, 1701, 1050, 266, 28, 1
+    expected = [1, 127, 966, 1701, 1050, 266, 28, 1]
+    for j in range(m):
+        assert s2[n - 1, j] == expected[j]

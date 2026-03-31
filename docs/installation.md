@@ -123,7 +123,7 @@ import polpack
 import numpy as np
 
 n = 10
-b = np.zeros(n + 1, dtype=np.int32, order='F')
+b = np.zeros(n + 1, dtype=np.int32, order="F")
 polpack.bell(n, b)
 print("polpack is working! Bell numbers:", b)
 ```

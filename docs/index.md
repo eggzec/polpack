@@ -38,7 +38,7 @@ import polpack
 
 # Example: Compute the first 11 Bell numbers
 # b[n] will contain the n-th Bell number
-b = np.zeros(11, dtype=np.int32, order='F')
+b = np.zeros(11, dtype=np.int32, order="F")
 polpack.bell(10, b)
 
 print(f"Bell numbers B_0 to B_10: {b}")
