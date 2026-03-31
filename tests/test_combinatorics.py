@@ -1,6 +1,7 @@
 """Tests for combinatorics: Stirling, Eulerian, Fibonacci, comb_row, trinomial, etc."""
 
 import numpy as np
+
 import polpack
 
 
@@ -35,9 +36,10 @@ def test_eulerian():
 
 def test_fibonacci_direct():
     """Test direct Fibonacci number computation."""
-    f = np.int32(0)
-    polpack.fibonacci_direct(1, f)
-    polpack.fibonacci_direct(10, f)
+    f = polpack.fibonacci_direct(1)
+    assert f == 1
+    f = polpack.fibonacci_direct(10)
+    assert f == 55
 
 
 def test_fibonacci_recursive():

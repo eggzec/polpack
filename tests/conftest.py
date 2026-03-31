@@ -2,6 +2,7 @@ import os
 import shutil
 import sys
 
+
 # On Windows, Python 3.8+ no longer uses PATH for DLL resolution.
 # If the Fortran extension wasn't fully statically linked, we need to
 # explicitly register the MinGW runtime DLL directory so that

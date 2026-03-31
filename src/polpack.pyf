@@ -46,9 +46,9 @@ python module _polpack ! in
                     double precision :: c
                 end subroutine bernoulli_number_values
         subroutine bernoulli_poly(n,x,bx) 
-                    integer :: n
-                    double precision :: x
-                    double precision :: bx
+                    integer intent(in) :: n
+                    double precision intent(in) :: x
+                    double precision intent(out) :: bx
                 end subroutine bernoulli_poly
         subroutine bernoulli_poly2(n,x,bx) 
                     integer :: n
@@ -220,7 +220,7 @@ python module _polpack ! in
         subroutine delannoy(m,n,a) 
                     integer intent(in) :: m
                     integer intent(in) :: n
-                    integer dimension(1 + m,1 + n), intent(in, out), depend(m) :: a
+                    integer dimension(1 + m,1 + n), intent(in, out), depend(m,n) :: a
                 end subroutine delannoy
         subroutine erf_values(n_data,x,fx) 
                     integer :: n_data
@@ -250,8 +250,8 @@ python module _polpack ! in
                     integer dimension(n,n), intent(in, out), depend(n) :: e
                 end subroutine eulerian
         subroutine fibonacci_direct(n,f) 
-                    integer :: n
-                    integer :: f
+                    integer intent(in) :: n
+                    integer intent(out) :: f
                 end subroutine fibonacci_direct
         subroutine fibonacci_floor(n,f,i) 
                     integer :: n

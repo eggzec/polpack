@@ -1,21 +1,32 @@
 """Tests for Legendre polynomials and associated functions."""
 
 import numpy as np
+
 import polpack
 
 
 def test_legendre_poly():
-    """Test Legendre polynomial at x=0.5."""
-    n = 5
-    x = 0.5
+    """Test Legendre polynomial at x=0.25 against legacy data."""
+    n = 10
+    x = 0.25
     cx = np.zeros(n + 1, dtype=np.float64)
     cpx = np.zeros(n + 1, dtype=np.float64)
     polpack.legendre_poly(n, x, cx, cpx)
-    # P(0,x)=1, P(1,x)=x=0.5
-    assert np.isclose(cx[0], 1.0)
-    assert np.isclose(cx[1], 0.5)
-    # P(2,x)=(3x^2-1)/2=(0.75-1)/2=-0.125
-    assert np.isclose(cx[2], -0.125)
+    # Data from LEGENDRE_POLY_TEST
+    expected = [
+        1.0,
+        0.25,
+        -0.40625,
+        -0.335938,
+        0.157715,
+        0.339722,
+        0.242767e-01,
+        -0.279919,
+        -0.152454,
+        0.176824,
+        0.221200,
+    ]
+    np.testing.assert_allclose(cx, expected, rtol=1e-5)
 
 
 def test_legendre_associated():

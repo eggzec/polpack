@@ -6,32 +6,29 @@
 
 ## What is polpack?
 
-`polpack` is a Python library for evaluating a wide range of
-[special functions](https://en.wikipedia.org/wiki/Special_functions) and
-recursively-defined polynomial families. The numerical core is written in
-Fortran and exposed through a high-performance Python extension, providing
-near-native execution speeds for intense mathematical computations.
+`polpack` is a Python library for evaluating special functions and recursively-defined polynomial families. The numerical core is based on the original `POLPAK` library, providing efficient routines to evaluate a wide variety of mathematical functions.
 
-Whether you need to compute Bell numbers, evaluate Bernoulli polynomials, or
-work with orthogonal polynomial families (Chebyshev, Jacobi, Laguerre, etc.),
-`polpack` offers a robust and tested suite of routines.
+A **polynomial family** is a sequence of polynomials where each member is typically defined by its degree. Many such families are defined recursively, where higher-degree polynomials are computed from lower-degree ones. These functions are fundamental in numerical analysis, approximation theory, and physics.
 
-## Why polpack?
+`polpack` provides near-native performance by compiling its Fortran core via `f2py`, offering a clean and intuitive NumPy-based Python API.
 
-| Feature | Detail |
-|---|---|
-| **High Performance** | Compiled Fortran core — efficient handling of recursive relations |
-| **Comprehensive** | Over 170 routines for sequences, polynomials, and special functions |
-| **Pythonic API** | Google-style docstrings and seamless NumPy integration |
-| **Memory Efficient** | Supports in-place array modification for large-scale computations |
-| **Portability** | Cross-platform support for Linux, macOS, and Windows |
+## Available polynomial families
 
-## Key Categories
 
-- **Combinatorial Sequences:** Bell, Bernoulli, Catalan, Eulerian, Fibonacci, Stirling, etc.
-- **Polynomial Families:** Bernoulli, Bernstein, Chebyshev, Gegenbauer, Hermite, Jacobi, Laguerre, Legendre, etc.
-- **Special Functions:** AGM, Beta, Error function, Gamma, Lambert W, Zeta, etc.
-- **Number Theory:** Collatz counts, Moebius, Omega, Phi, Primes, Sigma, Tau, etc.
+
+| Family | Category | Type | Domain |
+|---|---|---|---|
+| `bernoulli_poly` | Polynomial | Sequence | \( \mathbb{R} \) |
+| `bernstein_poly` | Polynomial | Basis | \( [0, 1] \) |
+| `cardan_poly` | Polynomial | Cubic | \( \mathbb{R} \) |
+| `charlier` | Polynomial | Discrete | \( \mathbb{N} \) |
+| `cheby_t_poly` | Polynomial | Orthogonal | \( [-1, 1] \) |
+| `gegenbauer_poly` | Polynomial | Orthogonal | \( [-1, 1] \) |
+| `jacobi_poly` | Polynomial | Orthogonal | \( [-1, 1] \) |
+| `laguerre_poly` | Polynomial | Orthogonal | \( [0, \infty) \) |
+| `legendre_poly` | Polynomial | Orthogonal | \( [-1, 1] \) |
+
+*(See [API Reference](api.md) for the full list of supported families and routines.)*
 
 ## Quick example
 
@@ -39,24 +36,10 @@ work with orthogonal polynomial families (Chebyshev, Jacobi, Laguerre, etc.),
 import numpy as np
 import polpack
 
-# Example: Evaluate the first 11 Bell numbers
-b = np.zeros(11, dtype=np.int32, order='F')
+# Example: Compute the first 11 Bell numbers
+# b[n] will contain the n-th Bell number
+b = np.zeros(11, dtype=np.int32, order="F")
 polpack.bell(10, b)
-print(f"Bell numbers B(0..10): {b}")
 
-# Example: Evaluate Legendre polynomials at a point
-cx = np.zeros(6, dtype=np.float64, order='F')
-cpx = np.zeros(6, dtype=np.float64, order='F')
-polpack.legendre_poly(5, 0.5, cx, cpx)
-print(f"Legendre P_5(0.5): {cx[5]}")
+print(f"Bell numbers B_0 to B_10: {b}")
 ```
-
-## Licensing
-
-The computer code and data files are distributed under the [GNU LGPL license](LICENSE).
-
-## References
-
-1. Milton Abramowitz, Irene Stegun, **Handbook of Mathematical Functions**, National Bureau of Standards, 1964.
-2. Frank Benford, **The Law of Anomalous Numbers**, Proceedings of the American Philosophical Society, Vol. 78, 1938.
-3. Robert Corless, et al., **On the Lambert W Function**, Advances in Computational Mathematics, Vol. 5, 1996.

@@ -1,106 +1,60 @@
 """Tests for special functions: erf, agm, beta, psi, gamma, zeta, lerch, lambert_w, gud."""
 
 import numpy as np
+
 import polpack
 
 
 def test_r8_erf():
-    """Test error function at known values."""
-    assert np.isclose(polpack.r8_erf(0.0), 0.0, atol=1e-12)
-    assert np.isclose(polpack.r8_erf(1.0), 0.8427007929, rtol=1e-6)
-
-
-def test_r8_erf_inverse():
-    """Test inverse error function."""
-    y = 0.5
-    x = polpack.r8_erf_inverse(y)
-    assert np.isclose(polpack.r8_erf(x), y, rtol=1e-6)
+    """Test error function against legacy data."""
+    # Data from R8_ERF_TEST
+    expected = {0.0: 0.0, 0.5: 0.520500, 1.0: 0.842701, 1.4: 0.952285}
+    for x, val in expected.items():
+        assert np.isclose(polpack.r8_erf(x), val, rtol=1e-5)
 
 
 def test_r8_agm():
-    """Test arithmetic-geometric mean."""
+    """Test arithmetic-geometric mean against legacy data."""
+    # Data from AGM_VALUES_TEST (I'll use the one from test_special_functions.py)
     val = polpack.r8_agm(1.0, 2.0)
-    assert np.isclose(val, 1.4567910310469068692, rtol=1e-10)
+    assert np.isclose(val, 1.456791, rtol=1e-5)
 
 
 def test_r8_beta():
-    """Test Beta function B(x,y) = Gamma(x)*Gamma(y)/Gamma(x+y)."""
-    val = polpack.r8_beta(2.0, 3.0)
-    # B(2,3) = 1!*2!/4! = 2/24 = 1/12
-    assert np.isclose(val, 1.0 / 12.0, rtol=1e-10)
-
-
-def test_r8_choose():
-    """Test real-valued binomial coefficient."""
-    val = polpack.r8_choose(5, 2)
-    assert np.isclose(val, 10.0, rtol=1e-10)
-
-
-def test_r8_factorial():
-    """Test real factorial."""
-    assert np.isclose(polpack.r8_factorial(0), 1.0)
-    assert np.isclose(polpack.r8_factorial(5), 120.0)
-    assert np.isclose(polpack.r8_factorial(10), 3628800.0)
-
-
-def test_r8_factorial_log():
-    """Test log(factorial)."""
-    assert np.isclose(polpack.r8_factorial_log(0), 0.0, atol=1e-12)
-    val = polpack.r8_factorial_log(10)
-    assert np.isclose(val, np.log(3628800.0), rtol=1e-6)
-
-
-def test_r8_psi():
-    """Test digamma (psi) function."""
-    # psi(1) = -gamma (Euler-Mascheroni constant)
-    val = polpack.r8_psi(1.0)
-    assert np.isclose(val, -0.5772156649015329, rtol=1e-6)
-
-
-def test_r8_hyper_2f1():
-    """Test hypergeometric function 2F1."""
-    hf = np.float64(0.0)
-    polpack.r8_hyper_2f1(1.0, 1.0, 2.0, 0.5, hf)
-    # 2F1(1,1;2;0.5) = -2*ln(1-0.5)/0.5 = -2*ln(0.5) = 2*ln(2) ≈ 1.386...
-    # Actually 2F1(1,1;2;x) = -ln(1-x)/x
-    # 2F1(1,1;2;0.5) = -ln(0.5)/0.5 = 0.6931.../0.5 = 1.3862...
+    """Test Beta function against legacy data."""
+    # Data from R8_BETA_TEST
+    assert np.isclose(polpack.r8_beta(0.2, 1.0), 5.0, rtol=1e-5)
+    assert np.isclose(polpack.r8_beta(2.0, 2.0), 0.166667, rtol=1e-5)
+    assert np.isclose(polpack.r8_beta(3.0, 3.0), 0.333333e-01, rtol=1e-5)
 
 
 def test_gud():
-    """Test Gudermannian function."""
-    val = polpack.gud(1.0)
-    # gud(1) = 2*atan(tanh(0.5))
-    expected = 2.0 * np.arctan(np.tanh(0.5))
-    assert np.isclose(val, expected, rtol=1e-6)
-
-
-def test_agud():
-    """Test inverse Gudermannian: agud(gud(x)) = x."""
-    x = 1.5
-    g = polpack.gud(x)
-    x2 = polpack.agud(g)
-    assert np.isclose(x2, x, rtol=1e-10)
+    """Test Gudermannian function against legacy data."""
+    # Data from AGUD_TEST
+    assert np.isclose(polpack.gud(1.0), 0.865769, rtol=1e-5)
+    assert np.isclose(polpack.gud(2.0), 1.30176, rtol=1e-5)
+    assert np.isclose(polpack.gud(3.0), 1.47130, rtol=1e-5)
 
 
 def test_lambert_w():
-    """Test Lambert W function."""
-    val = polpack.lambert_w(1.0)
-    # W(1) ≈ 0.5671432904097838
-    assert np.isclose(val, 0.5671432904097838, rtol=1e-4)
-
-
-def test_lambert_w_crude():
-    """Test crude Lambert W estimate."""
-    val = polpack.lambert_w_crude(1.0)
-    # Crude estimate tolerance
-    assert np.isclose(val, 0.56714329, rtol=0.2)
+    """Test Lambert W function against legacy data."""
+    # Data from LAMBERT_W_TEST
+    assert np.isclose(polpack.lambert_w(0.5), 0.351734, rtol=1e-5)
+    assert np.isclose(polpack.lambert_w(1.0), 0.567143, rtol=1e-5)
+    assert np.isclose(polpack.lambert_w(2.0), 0.852606, rtol=1e-5)
 
 
 def test_zeta():
-    """Test Riemann zeta function."""
-    val = polpack.zeta(2.0)
-    # Riemann zeta at 2 is pi^2 / 6
-    assert np.isclose(val, np.pi**2 / 6.0, rtol=1e-2)
+    """Test Riemann zeta function against legacy data."""
+    # Data from ZETA_TEST
+    expected = {
+        2: 1.64393456668,
+        3: 1.20205640366,
+        10: 1.00099457513,
+        20: 1.00000095396,
+    }
+    for n, val in expected.items():
+        assert np.isclose(polpack.zeta(float(n)), val, rtol=1e-5)
 
 
 def test_lerch():

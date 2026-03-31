@@ -4,12 +4,15 @@
 
 [![Tests](https://github.com/eggzec/polpack/actions/workflows/test.yml/badge.svg)](https://github.com/eggzec/polpack/actions/workflows/test.yml)
 [![Documentation](https://github.com/eggzec/polpack/actions/workflows/docs.yml/badge.svg)](https://github.com/eggzec/polpack/actions/workflows/docs.yml)
+[![codecov](https://codecov.io/github/eggzec/polpack/graph/badge.svg)](https://codecov.io/github/eggzec/polpack)
 
 [![License: LGPL-2.1](https://img.shields.io/badge/License-LGPL%202.1-blue.svg)](LICENSE)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/polpack.svg?label=PyPI%20downloads)](https://pypi.org/project/polpack/)
 [![Python versions](https://img.shields.io/pypi/pyversions/polpack.svg)](https://pypi.org/project/polpack/)
 
-`polpack` is a high-performance Python library for evaluating special functions and recursively-defined polynomial families. The numerical core is written in Fortran and exposed via a Pythonic interface with comprehensive Google-style docstrings.
+`polpack` is a high-performance Python library for evaluating special functions and recursively-defined polynomial families. The numerical core is written in Fortran and compiled via `f2py`, providing efficient routines for mathematical and combinatorial computations.
+
+It includes routines to evaluate classic families such as **Bernoulli**, **Chebyshev**, **Gegenbauer**, **Hermite**, **Laguerre**, and **Legendre** polynomials, among others.
 
 ## Quick example
 
@@ -17,10 +20,10 @@
 import numpy as np
 import polpack
 
-# Example: Compute Bell numbers up to order 10
-b = np.zeros(11, dtype=np.int32, order='F')
-polpack.bell(10, b)
-print(f"Bell numbers: {b}")
+# Example: Compute Bell numbers
+bell = np.zeros(11, dtype=np.int32)
+polpack.bell(10, bell)
+print(f"Bell numbers: {bell}")
 ```
 
 ## Installation
@@ -33,7 +36,7 @@ Requires Python 3.10+ and NumPy. See the [full installation guide](https://eggze
 
 ## Documentation
 
-- [Theory](https://eggzec.github.io/polpack/theory/) — mathematical background
+- [Theory](https://eggzec.github.io/polpack/theory/) — mathematical background, polynomial families, and special functions
 - [Quickstart](https://eggzec.github.io/polpack/quickstart/) — runnable examples
 - [API Reference](https://eggzec.github.io/polpack/api/) — function signatures and parameters
 - [References](https://eggzec.github.io/polpack/references/) — literature citations

@@ -1,6 +1,7 @@
 """Tests for number theory functions: sigma, tau, phi, omega, moebius, mertens, prime."""
 
 import numpy as np
+
 import polpack
 
 
