@@ -4,13 +4,11 @@
 
 ---
 
-## What is polpack?
+## Overview
 
 `polpack` is a Python library for evaluating special functions and recursively-defined polynomial families. The numerical core is based on the original `POLPAK` library, providing efficient routines to evaluate a wide variety of mathematical functions.
 
 A **polynomial family** is a sequence of polynomials where each member is typically defined by its degree. Many such families are defined recursively, where higher-degree polynomials are computed from lower-degree ones. These functions are fundamental in numerical analysis, approximation theory, and physics.
-
-`polpack` provides near-native performance by compiling its Fortran core via `f2py`, offering a clean and intuitive NumPy-based Python API.
 
 ## Available polynomial families
 
@@ -30,7 +28,11 @@ A **polynomial family** is a sequence of polynomials where each member is typica
 
 *(See [API Reference](api.md) for the full list of supported families and routines.)*
 
-## Quick example
+## Requirements
+
+- [NumPy](http://www.numpy.org/)
+
+## Example Usage
 
 ```python
 import numpy as np
@@ -43,3 +45,16 @@ polpack.bell(10, b)
 
 print(f"Bell numbers B_0 to B_10: {b}")
 ```
+
+## Main Features
+
+1. **Orthogonal polynomial families**: Chebyshev, Gegenbauer, Hermite, Jacobi, Laguerre, Legendre, and more.
+2. **Non-orthogonal polynomial families**: Bernoulli, Bernstein, Cardan, Charlier, Krawtchouk, Meixner, and Zernike polynomials.
+3. **Combinatorial sequences**: Bell, Catalan, Delannoy, Motzkin, Stirling, and Fibonacci numbers.
+4. **Number-theoretic functions**: Euler totient, Moebius, Mertens, primes, divisors, and Jacobi/Legendre symbols.
+5. **Special functions**: Gamma, Beta, error function, Lambert W, Riemann Zeta, and more.
+6. **NumPy-based interface**: All routines operate on pre-allocated NumPy arrays for zero-copy performance.
+
+## References
+
+- J. Burkardt, *POLPAK — A Library of Special Polynomial Functions*, [jburkardt.github.io](https://jburkardt.github.io/f_src/polpak/polpak.html)

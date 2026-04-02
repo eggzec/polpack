@@ -29,8 +29,7 @@ The structure in polynomial families is often characterized by:
 3. **Orthogonality** — $\int_a^b P_m(x) P_n(x) w(x) \, dx = 0$ for $m \neq n$
 4. **Normalization** — the value of the integral for $m = n$ (often $C_n$)
 
-While sdepack focuses on sample paths of Wiener processes, `polpack` focuses on
-the stable evaluation of these deterministic bases.
+`polpack` focuses on the stable numerical evaluation of these deterministic bases.
 
 ### Explicit vs. Recursive interpretation
 
@@ -51,8 +50,8 @@ There are two principal ways to define and evaluate polynomial families:
 
     $$ \sum_{k=0}^n \frac{P_k(x)P_k(y)}{h_k} = \frac{k_n}{k_{n+1}h_n} \frac{P_{n+1}(x)P_n(y) - P_n(x)P_{n+1}(y)}{x - y} $$
 
-    The additional terms arising in this identity (analogous to Itô's lemma)
-    are fundamental to understanding the convergence of spectral expansions.
+    This identity is fundamental to understanding the convergence of spectral
+    expansions and the completeness of orthogonal bases.
 
 ## 2) Orthogonal Polynomial Families
 
@@ -244,11 +243,10 @@ where $A_n, B_n, C_n$ are coefficients that ensure the correct scaling at each
 stage. When multiplied in the core loops, this produces the high-order
 polynomial values required for scientific applications.
 
-## 4) Chebyshev Polynomials — RK1 analog
+## 4) Chebyshev Polynomials
 
-The simplest and most widely used family in numerical analysis. Named after
-Pafnuty Chebyshev, they are the deterministic analog of many foundational
-integrators.
+The simplest and most widely used family in numerical analysis, named after
+Pafnuty Chebyshev.
 
 For both first and second kind variants:
 
@@ -262,9 +260,10 @@ $$
 This recurrence is notoriously stable for $x \in [-1, 1]$.
 
 !!! info "Minimax property"
-    The Chebyshev polynomials minimize the maximum error in function
-    approximation, analogously to how Euler-Maruyama minimizes one-step
-    error in SDEs.
+    Among all polynomials of degree $n$ with leading coefficient 1, the
+    Chebyshev polynomial $T_n(x)/2^{n-1}$ has the smallest maximum absolute
+    value on $[-1, 1]$. This makes Chebyshev nodes optimal for polynomial
+    interpolation and function approximation.
 
 ## 5) Legendre Polynomials — Two-stage recurrence
 
@@ -337,8 +336,8 @@ backward stability matters in eigenvalue problems.
 ### Relationship between degree and order
 
 The three-term recurrence schemes in `polpack` are designed to achieve higher
-numerical precision. The Euler-like first-order recursions (RK1 analog) are
-stable but may accumulate error at very high degrees ($n > 1000$). Higher-degree
+numerical precision. These recurrences are stable but may accumulate
+floating-point error at very high degrees ($n > 1000$). Higher-degree
 polynomials generally benefit from the stable recurrence architecture.
 
 !!! tip "Evaluation guidance"
