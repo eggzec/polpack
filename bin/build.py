@@ -3,7 +3,7 @@ import logging
 import os
 import shlex
 import shutil
-import subprocess
+import subprocess  # noqa: S404
 import sys
 from pathlib import Path
 
@@ -33,29 +33,35 @@ stderr_handler.setFormatter(formatter)
 logger.addHandler(stderr_handler)
 
 
-def run_command(command, cwd=None):
+def run_command(command: str, cwd: str | None = None) -> None:
+    """Run a shell command, streaming output to the logger.
+
+    Args:
+        command (str): Shell command to execute.
+        cwd (str | None): Working directory; defaults to current directory.
+    """
     if cwd is None:
         logger.warning(
             "No working directory specified. Using current directory."
         )
-        cwd = Path.cwd()
+        cwd_path = Path.cwd()
     else:
-        cwd = Path(cwd)
+        cwd_path = Path(cwd)
 
-    log_file_path = cwd / "build.log"
+    log_file_path = cwd_path / "build.log"
 
-    logger.info(f"Executing command: '{command}' in '{cwd}'")
+    logger.info(f"Executing command: '{command}' in '{cwd_path}'")
 
-    with subprocess.Popen(
+    with subprocess.Popen(  # noqa: S603
         shlex.split(command),
-        cwd=str(cwd),
+        cwd=str(cwd_path),
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         bufsize=0,
         env=dict(**os.environ, PYTHONUNBUFFERED="1"),
         text=True,
     ) as proc:
-        with open(log_file_path, "a") as _log_file:
+        with open(log_file_path, "a", encoding="utf-8") as _log_file:
             for line in proc.stdout:
                 logger.debug(line.rstrip())
 
@@ -68,27 +74,32 @@ def run_command(command, cwd=None):
     logger.info("Command executed successfully.")
 
 
-def install():
+def install() -> None:
+    """Install the package into the current environment."""
     run_command("uv pip install . -v")
 
 
-def wheel():
+def wheel() -> None:
+    """Build a wheel distribution."""
     run_command("uv build --wheel -v")
 
 
-def clean():
+def clean() -> None:
+    """Remove all build artifacts and generated files."""
     logger.debug("Starting cleanup ...")
 
     run_command("uv pip uninstall polpack")
 
+    remove_names: set[str] = {
+        "dist",
+        "build",
+        "lib",
+        ".pytest_cache",
+        ".ruff_cache",
+    }
+
     for entry in Path("").iterdir():
-        if entry.name in [
-            "dist",
-            "build",
-            "lib",
-            ".pytest_cache",
-            ".ruff_cache",
-        ]:
+        if entry.name in remove_names:
             logger.info(f"Removing '{entry}'")
             shutil.rmtree(entry)
         if entry.name == "bin" and entry.is_dir():
@@ -109,7 +120,8 @@ def clean():
     logger.info("Finished cleanup.")
 
 
-def main():
+def main() -> None:
+    """Parse arguments and dispatch to the appropriate build action."""
     parser = argparse.ArgumentParser(description="PolPack Build Script")
     parser.add_argument(
         "mode",

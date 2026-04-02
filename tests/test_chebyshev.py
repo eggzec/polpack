@@ -5,7 +5,7 @@ import numpy as np
 import polpack
 
 
-def test_cheby_t_poly():
+def test_cheby_t_poly() -> None:
     """Test Chebyshev T polynomial against known values at x=0.8."""
     m = 1
     n = 12
@@ -34,7 +34,7 @@ def test_cheby_t_poly():
         )
 
 
-def test_cheby_u_poly():
+def test_cheby_u_poly() -> None:
     """Test Chebyshev U polynomial against known values at x=0.8."""
     m = 1
     n = 12
@@ -63,7 +63,7 @@ def test_cheby_u_poly():
         )
 
 
-def test_cheby_t_poly_zero():
+def test_cheby_t_poly_zero() -> None:
     """Test Chebyshev T polynomial zeroes."""
     n = 4
     z = np.zeros(n, dtype=np.float64)
@@ -77,7 +77,7 @@ def test_cheby_t_poly_zero():
         assert np.isclose(cx[0, n], 0.0, atol=1e-12)
 
 
-def test_cheby_u_poly_zero():
+def test_cheby_u_poly_zero() -> None:
     """Test Chebyshev U polynomial zeroes."""
     n = 4
     z = np.zeros(n, dtype=np.float64)
@@ -90,7 +90,7 @@ def test_cheby_u_poly_zero():
         assert np.isclose(cx[0, n], 0.0, atol=1e-12)
 
 
-def test_cheby_t_poly_coef():
+def test_cheby_t_poly_coef() -> None:
     """Test Chebyshev T polynomial coefficient computation."""
     n = 2
     c = np.zeros((n + 1, n + 1), dtype=np.float64, order="F")
@@ -100,7 +100,7 @@ def test_cheby_t_poly_coef():
     assert np.isclose(c[2, 0], -1.0)
 
 
-def test_chebyshev_discrete():
+def test_chebyshev_discrete() -> None:
     """Test discrete Chebyshev polynomials."""
     n = 3
     m = 5

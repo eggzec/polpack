@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import subprocess
+import subprocess  # noqa: S404
 import sys
 from pathlib import Path
 
@@ -16,7 +16,8 @@ except ModuleNotFoundError:
     from setuptools_scm import get_version
 
 
-def main():
+def main() -> None:
+    """Print the current package version derived from the git tags."""
     root = Path(__file__).parent.parent
     version = get_version(root=root)
     if version is None:

@@ -1,55 +1,67 @@
 # Installation
 
-`polpack` is distributed as a compiled wheel on PyPI and can also be installed
-from source via GitHub.
+`polpack` can be installed from PyPI or directly from source via GitHub.
 
 ---
 
-## Prerequisites
+## [PyPI](https://pypi.org/project/polpack)
 
-- **Python 3.10+**
-- **NumPy** (installed automatically as a dependency)
+For using the PyPI package in your project, add it to your configuration file:
 
-For source builds you additionally need:
+=== "pyproject.toml"
 
-- A Fortran compiler (`gfortran` recommended)
-- `meson` and `meson-python` build system
-- `numpy` (for `f2py` compilation)
+    ```toml
+    [project.dependencies]
+    polpack = "*" # (1)!
+    ```
 
-## PyPI (recommended)
+    1. Specifying a version is recommended
+
+=== "requirements.txt"
+
+    ```
+    polpack>=0.1.0
+    ```
 
 ### pip
 
-```bash
-pip install --upgrade polpack
-```
+=== "Installation for user"
 
-### pyproject.toml dependency
+    ```bash
+    pip install --upgrade --user polpack # (1)!
+    ```
 
-```toml
-[project]
-dependencies = [
-    "polpack"
-]
-```
+    1. You may need to use `pip3` instead of `pip` depending on your Python installation.
 
-### requirements.txt
+=== "Installation in virtual environment"
 
-```text
-polpack
-```
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install --require-virtualenv --upgrade polpack # (1)!
+    ```
 
-## Package managers
+    1. You may need to use `pip3` instead of `pip` depending on your Python installation.
+
+    !!! note
+        The command to activate the virtual environment depends on your platform and shell.
+        [More info](https://docs.python.org/3/library/venv.html#how-venvs-work)
 
 ### uv
 
-```bash
-# Add to a uv project
-uv add polpack
+=== "Adding to uv project"
 
-# Or install into the current environment
-uv pip install polpack
-```
+    ```bash
+    uv add polpack
+    uv sync
+    ```
+
+=== "Installing to uv environment"
+
+    ```bash
+    uv venv
+    uv pip install polpack
+    ```
 
 ### pipenv
 
@@ -75,7 +87,9 @@ pdm add polpack
 hatch add polpack
 ```
 
-## Installing from source (GitHub)
+---
+
+## [GitHub](https://github.com/eggzec/polpack)
 
 Install the latest development version directly from the repository:
 
@@ -85,8 +99,7 @@ pip install --upgrade "git+https://github.com/eggzec/polpack.git#egg=polpack"
 
 ### Building locally
 
-Clone and build from source if you want to modify the Fortran code or test
-local changes:
+Clone and build from source if you want to modify or test local changes:
 
 ```bash
 git clone https://github.com/eggzec/polpack.git
@@ -94,25 +107,29 @@ cd polpack
 pip install -e .
 ```
 
-This invokes the `meson` build system to compile the Fortran sources via
-`f2py` and install the resulting extension module in development mode.
+This invokes the `meson` build system to compile the Fortran sources and install
+the resulting extension module in development mode.
 
 !!! warning "Fortran compiler required"
-    Source builds require a working Fortran compiler. On most Linux
-    distributions install `gfortran`:
+    Source builds require a working Fortran compiler. On most Linux distributions,
+    install `gfortran`:
 
-```bash
-# Debian/Ubuntu
-sudo apt install gfortran
+    === "Debian / Ubuntu"
+        ```bash
+        sudo apt install gfortran
+        ```
+    === "Fedora"
+        ```bash
+        sudo dnf install gcc-gfortran
+        ```
+    === "macOS (Homebrew)"
+        ```bash
+        brew install gcc
+        ```
+    === "Windows"
+        Install [MinGW-w64](https://www.mingw-w64.org/) with gfortran or use MSYS2.
 
-# Fedora
-sudo dnf install gcc-gfortran
-
-# macOS (Homebrew)
-brew install gcc
-```
-
-On Windows, install MinGW-w64 with gfortran or use MSYS2.
+---
 
 ## Verifying the installation
 
@@ -128,10 +145,20 @@ polpack.bell(n, b)
 print("polpack is working! Bell numbers:", b)
 ```
 
+---
+
 ## Dependencies
 
 | Package | Purpose |
 |---|---|
-| `numpy` | Array handling, `f2py` integration |
+| `numpy` | Array handling and `f2py` integration |
 
 No other runtime dependencies are required.
+
+For source builds, you additionally need:
+
+| Package | Purpose |
+|---|---|
+| `gfortran` | Compiling Fortran sources |
+| `meson` and `meson-python` | Build system |
+| `numpy` | Required by `f2py` at build time |

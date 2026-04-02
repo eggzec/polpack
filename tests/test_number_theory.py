@@ -1,11 +1,11 @@
-"""Tests for number theory functions: sigma, tau, phi, omega, moebius, mertens, prime."""
+"""Tests for number theory: sigma, tau, phi, omega, moebius, mertens, prime."""
 
 import numpy as np
 
 import polpack
 
 
-def test_sigma():
+def test_sigma() -> None:
     """Test divisor sum function."""
     sigma_n = np.int32(0)
     polpack.sigma(12, sigma_n)
@@ -13,35 +13,35 @@ def test_sigma():
     # Note: result is returned via the argument
 
 
-def test_tau():
+def test_tau() -> None:
     """Test number of divisors function."""
     taun = np.int32(0)
     polpack.tau(12, taun)
     # tau(12) = 6 (divisors: 1,2,3,4,6,12)
 
 
-def test_phi():
+def test_phi() -> None:
     """Test Euler totient function."""
     phin = np.int32(0)
     polpack.phi(12, phin)
     # phi(12) = 4 (numbers 1,5,7,11 are coprime to 12)
 
 
-def test_omega():
+def test_omega() -> None:
     """Test number of distinct prime divisors."""
     ndiv = np.int32(0)
     polpack.omega(12, ndiv)
     # omega(12) = 2 (prime factors: 2, 3)
 
 
-def test_moebius():
+def test_moebius() -> None:
     """Test Moebius function."""
     mu = np.int32(0)
     polpack.moebius(6, mu)
     # mu(6) = mu(2*3) = 1 (square-free, 2 prime factors)
 
 
-def test_mertens():
+def test_mertens() -> None:
     """Test Mertens function."""
     val = polpack.mertens(10)
     # M(10) = sum mu(k) for k=1..10
@@ -51,42 +51,42 @@ def test_mertens():
     assert val == -1
 
 
-def test_prime():
+def test_prime() -> None:
     """Test prime number lookup."""
-    assert polpack.prime(1) == 2
-    assert polpack.prime(2) == 3
-    assert polpack.prime(3) == 5
-    assert polpack.prime(4) == 7
-    assert polpack.prime(10) == 29
-    assert polpack.prime(100) == 541
+    assert polpack.prime(1) == 2  # noqa: PLR2004
+    assert polpack.prime(2) == 3  # noqa: PLR2004
+    assert polpack.prime(3) == 5  # noqa: PLR2004
+    assert polpack.prime(4) == 7  # noqa: PLR2004
+    assert polpack.prime(10) == 29  # noqa: PLR2004
+    assert polpack.prime(100) == 541  # noqa: PLR2004
 
 
-def test_i4_choose():
+def test_i4_choose() -> None:
     """Test binomial coefficient C(n,k)."""
-    assert polpack.i4_choose(5, 2) == 10
-    assert polpack.i4_choose(10, 3) == 120
+    assert polpack.i4_choose(5, 2) == 10  # noqa: PLR2004
+    assert polpack.i4_choose(10, 3) == 120  # noqa: PLR2004
     assert polpack.i4_choose(0, 0) == 1
 
 
-def test_i4_factorial():
+def test_i4_factorial() -> None:
     """Test factorial function."""
     assert polpack.i4_factorial(0) == 1
     assert polpack.i4_factorial(1) == 1
-    assert polpack.i4_factorial(5) == 120
-    assert polpack.i4_factorial(10) == 3628800
+    assert polpack.i4_factorial(5) == 120  # noqa: PLR2004
+    assert polpack.i4_factorial(10) == 3628800  # noqa: PLR2004
 
 
-def test_i4_factorial2():
+def test_i4_factorial2() -> None:
     """Test double factorial function."""
     assert polpack.i4_factorial2(0) == 1
-    assert polpack.i4_factorial2(5) == 15  # 5!! = 5*3*1
-    assert polpack.i4_factorial2(6) == 48  # 6!! = 6*4*2
+    assert polpack.i4_factorial2(5) == 15  # noqa: PLR2004  # 5!! = 5*3*1
+    assert polpack.i4_factorial2(6) == 48  # noqa: PLR2004  # 6!! = 6*4*2
 
 
-def test_collatz_count():
+def test_collatz_count() -> None:
     """Test Collatz sequence length."""
     assert polpack.collatz_count(1) == 1
-    assert polpack.collatz_count(2) == 2
-    assert polpack.collatz_count(3) == 8
-    assert polpack.collatz_count(7) == 17
-    assert polpack.collatz_count(27) == 112
+    assert polpack.collatz_count(2) == 2  # noqa: PLR2004
+    assert polpack.collatz_count(3) == 8  # noqa: PLR2004
+    assert polpack.collatz_count(7) == 17  # noqa: PLR2004
+    assert polpack.collatz_count(27) == 112  # noqa: PLR2004
