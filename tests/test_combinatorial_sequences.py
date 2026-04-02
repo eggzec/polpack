@@ -5,7 +5,7 @@ import numpy as np
 import polpack
 
 
-def test_bell_numbers():
+def test_bell_numbers() -> None:
     """Test Bell numbers B(0) through B(10) against known values."""
     n = 10
     b = np.zeros(n + 1, dtype=np.int32)
@@ -14,7 +14,7 @@ def test_bell_numbers():
     np.testing.assert_array_equal(b, expected)
 
 
-def test_catalan_numbers():
+def test_catalan_numbers() -> None:
     """Test Catalan numbers C(0) through C(10) against known values."""
     n = 10
     c = np.zeros(n + 1, dtype=np.int32)
@@ -23,13 +23,13 @@ def test_catalan_numbers():
     np.testing.assert_array_equal(c, expected)
 
 
-def test_catalan_constant():
+def test_catalan_constant() -> None:
     """Test Catalan's constant value."""
     val = polpack.catalan_constant()
     assert np.isclose(val, 0.915965594177219015, rtol=1e-12)
 
 
-def test_catalan_row_next():
+def test_catalan_row_next() -> None:
     """Test Catalan row computation against legacy data."""
     # Row 7 of Catalan's triangle
     n = 7
@@ -39,7 +39,7 @@ def test_catalan_row_next():
     np.testing.assert_array_equal(irow, expected_7)
 
 
-def test_delannoy():
+def test_delannoy() -> None:
     """Test Delannoy numbers A(M,N) against legacy data."""
     # Test row 4 (M=4)
     m = 4
@@ -51,15 +51,15 @@ def test_delannoy():
     np.testing.assert_array_equal(a[4, :], expected_row4)
 
 
-def test_fibonacci_direct():
+def test_fibonacci_direct() -> None:
     """Test direct Fibonacci computation against legacy data."""
     # F(10) = 55, F(20) = 6765
-    assert polpack.fibonacci_direct(10) == 55
-    assert polpack.fibonacci_direct(20) == 6765
-    assert polpack.fibonacci_direct(20) == 6765
+    assert polpack.fibonacci_direct(10) == 55  # noqa: PLR2004
+    assert polpack.fibonacci_direct(20) == 6765  # noqa: PLR2004
+    assert polpack.fibonacci_direct(20) == 6765  # noqa: PLR2004
 
 
-def test_stirling1():
+def test_stirling1() -> None:
     """Test Stirling numbers of the first kind against legacy data."""
     n = 8
     m = 8
@@ -71,7 +71,7 @@ def test_stirling1():
         assert s1[n - 1, j] == expected[j]
 
 
-def test_stirling2():
+def test_stirling2() -> None:
     """Test Stirling numbers of the second kind against legacy data."""
     n = 8
     m = 8

@@ -5,7 +5,7 @@ import numpy as np
 import polpack
 
 
-def test_bernoulli_number():
+def test_bernoulli_number() -> None:
     """Test Bernoulli number computation against legacy data."""
     n = 30
     b = np.zeros(n + 1, dtype=np.float64)
@@ -29,7 +29,7 @@ def test_bernoulli_number():
         )
 
 
-def test_bernoulli_poly():
+def test_bernoulli_poly() -> None:
     """Test Bernoulli polynomial evaluation at x=0.2 against legacy data."""
     x = 0.2
     # Data from BERNOULLI_POLY_TEST
@@ -49,7 +49,7 @@ def test_bernoulli_poly():
         )
 
 
-def test_bernstein_poly():
+def test_bernstein_poly() -> None:
     """Test Bernstein polynomial values against legacy data (x=0.25)."""
     n = 4
     x = 0.25
@@ -60,7 +60,7 @@ def test_bernstein_poly():
     assert np.allclose(bern, expected, rtol=1e-5)
 
 
-def test_euler_number():
+def test_euler_number() -> None:
     """Test Euler number computation against legacy data."""
     n = 12
     e = np.zeros(n + 1, dtype=np.int32)
@@ -69,14 +69,14 @@ def test_euler_number():
     assert e[0] == 1
     assert e[1] == 0
     assert e[2] == -1
-    assert e[4] == 5
-    assert e[6] == -61
-    assert e[8] == 1385
-    assert e[10] == -50521
-    assert e[12] == 2702765
+    assert e[4] == 5  # noqa: PLR2004
+    assert e[6] == -61  # noqa: PLR2004
+    assert e[8] == 1385  # noqa: PLR2004
+    assert e[10] == -50521  # noqa: PLR2004
+    assert e[12] == 2702765  # noqa: PLR2004
 
 
-def test_euler_poly():
+def test_euler_poly() -> None:
     """Test Euler polynomial evaluation at x=0.5 against legacy data."""
     x = 0.5
     # Data from EULER_POLY_TEST

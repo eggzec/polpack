@@ -387,14 +387,16 @@ def cheby_u_poly_zero(n: int, z: np.ndarray) -> None:
     return _polpack.cheby_u_poly_zero(n, z)
 
 
-def chebyshev_discrete(n, m, x, v):
+def chebyshev_discrete(n: int, m: int, x: float, v: np.ndarray) -> None:
     """Evaluates discrete Chebyshev polynomials at a point.
 
     Args:
-        n (int): Description for n.
-        m (int): Description for m.
-        x (float): Description for x.
-        v (float): Description for v.
+        n (int): Highest degree.
+        m (int): Grid size (number of discrete points).
+        x (float): Evaluation point.
+        v (np.ndarray): Output array of size n+1.
+    Returns:
+        None
     """
     return _polpack.chebyshev_discrete(n, m, x, v)
 
@@ -484,13 +486,15 @@ def cos_power_int_values(
     return _polpack.cos_power_int_values(n_data, a, b, n, fx)
 
 
-def delannoy(m, n, a):
+def delannoy(m: int, n: int, a: np.ndarray) -> None:
     """Returns the Delannoy numbers up to orders (M,N).
 
     Args:
-        m (int): maximum order m.
-        n (int): maximum order n.
-        a (ndarray): array to store the Delannoy numbers.
+        m (int): Maximum row order.
+        n (int): Maximum column order.
+        a (np.ndarray): Output array of shape (m+1, n+1).
+    Returns:
+        None
     """
     return _polpack.delannoy(m, n, a)
 
@@ -545,11 +549,11 @@ def eulerian(n: int, e: np.ndarray) -> None:
     return _polpack.eulerian(n, e)
 
 
-def fibonacci_direct(n):
-    """Computes the N-th Fibonacci number directly.
+def fibonacci_direct(n: int) -> int:
+    """Computes the N-th Fibonacci number directly via the Binet formula.
 
     Args:
-        n (int): index of the Fibonacci number.
+        n (int): Index of the Fibonacci number.
     Returns:
         int: N-th Fibonacci number.
     """
@@ -718,7 +722,7 @@ def hermite_poly_phys_values(n_data: int, n: int, x: float, fx: float) -> None:
     return _polpack.hermite_poly_phys_values(n_data, n, x, fx)
 
 
-def hyper_2f1_values(
+def hyper_2f1_values(  # noqa: PLR0913, PLR0917
     n_data: int, a: float, b: float, c: float, x: float, fx: float
 ) -> None:
     """Returns some values of the hypergeometric function 2F1.
@@ -736,7 +740,7 @@ def hyper_2f1_values(
     return _polpack.hyper_2f1_values(n_data, a, b, c, x, fx)
 
 
-def i4_factor(
+def i4_factor(  # noqa: PLR0913, PLR0917
     n: int,
     factor_max: int,
     factor_num: np.ndarray,
@@ -849,7 +853,7 @@ def i4mat_print(m: int, n: int, a: np.ndarray, title: str) -> None:
     return _polpack.i4mat_print(m, n, a, title)
 
 
-def i4mat_print_some(
+def i4mat_print_some(  # noqa: PLR0913, PLR0917
     m: int,
     n: int,
     a: np.ndarray,
@@ -893,7 +897,7 @@ def jacobi_poly(
     return _polpack.jacobi_poly(n, alpha, beta, x, cx)
 
 
-def jacobi_poly_values(
+def jacobi_poly_values(  # noqa: PLR0913, PLR0917
     n_data: int, n: int, a: float, b: float, x: float, fx: float
 ) -> None:
     """Returns some values of the Jacobi polynomial.
@@ -1534,7 +1538,7 @@ def slice_fn(dim_num: int, slice_num: int, piece_num: np.ndarray) -> None:
     return _polpack.slice(dim_num, slice_num, piece_num)
 
 
-def spherical_harmonic(
+def spherical_harmonic(  # noqa: PLR0913, PLR0917
     ell: int, m: int, theta: float, phi: float, c: np.ndarray, s: np.ndarray
 ) -> None:
     """Evaluates spherical harmonic functions.
@@ -1552,19 +1556,31 @@ def spherical_harmonic(
     return _polpack.spherical_harmonic(ell, m, theta, phi, c, s)
 
 
-def spherical_harmonic_values(n_data, l, m, theta, phi, yr, yi):
-    """Returns values of spherical harmonic functions.
+def spherical_harmonic_values(  # noqa: PLR0913, PLR0917
+    n_data: int,
+    ell: int,
+    m: int,
+    theta: float,
+    phi: float,
+    yr: float,
+    yi: float,
+) -> None:
+    """Returns tabulated values of spherical harmonic functions for testing.
 
     Args:
-        n_data (int): Description for n_data.
-        l (int): Description for l.
-        m (int): Description for m.
-        theta (float): Description for theta.
-        phi (float): Description for phi.
-        yr (float): Description for yr.
-        yi (float): Description for yi.
+        n_data (int): Index into the table (0 to start); incremented on return.
+        ell (int): Degree l of the spherical harmonic.
+        m (int): Order of the spherical harmonic.
+        theta (float): Polar angle in radians.
+        phi (float): Azimuthal angle in radians.
+        yr (float): Real part of the spherical harmonic.
+        yi (float): Imaginary part of the spherical harmonic.
+    Returns:
+        None
     """
-    return _polpack.spherical_harmonic_values(n_data, l, m, theta, phi, yr, yi)
+    return _polpack.spherical_harmonic_values(
+        n_data, ell, m, theta, phi, yr, yi
+    )
 
 
 def stirling1(n: int, m: int, s1: np.ndarray) -> None:
@@ -1644,13 +1660,15 @@ def triangle_upper_to_i4(i: int, j: int, k: np.ndarray) -> None:
     return _polpack.triangle_upper_to_i4(i, j, k)
 
 
-def vibonacci(n, seed, v):
+def vibonacci(n: int, seed: np.ndarray, v: np.ndarray) -> None:
     """Computes the first N Vibonacci numbers.
 
     Args:
-        n (int): Description for n.
-        seed (int): Description for seed.
-        v (int): Description for v.
+        n (int): Number of terms to compute.
+        seed (np.ndarray): Random seed (scalar int32 array); updated on return.
+        v (np.ndarray): Output array of size n.
+    Returns:
+        None
     """
     return _polpack.vibonacci(n, seed, v)
 
@@ -1712,457 +1730,572 @@ def zeta_values(n_data: int, n: int, zeta: float) -> None:
     return _polpack.zeta_values(n_data, n, zeta)
 
 
-def agud(g):
+def agud(g: float) -> float:
     """Evaluates the inverse Gudermannian function.
 
     Args:
-        g: Description for g.
+        g (float): Gudermannian value.
+    Returns:
+        float
     """
     return _polpack.agud(g)
 
 
-def align_enum(m, n):
-    """counts the alignments of two sequences of M and N elements.
+def align_enum(m: int, n: int) -> int:
+    """Counts the alignments of two sequences of M and N elements.
 
     Args:
-        m: Description for m.
-        n: Description for n.
+        m (int): Length of first sequence.
+        n (int): Length of second sequence.
+    Returns:
+        int
     """
     return _polpack.align_enum(m, n)
 
 
-def benford(ival):
+def benford(ival: int) -> float:
     """Returns the Benford probability of one or more significant digits.
 
     Args:
-        ival: Description for ival.
+        ival (int): Leading digit(s) value.
+    Returns:
+        float
     """
     return _polpack.benford(ival)
 
 
-def catalan_constant():
-    """Returns the value of Catalan's constant."""
+def catalan_constant() -> float:
+    """Returns the value of Catalan's constant.
+
+    Returns:
+        float
+    """
     return _polpack.catalan_constant()
 
 
-def collatz_count(n):
-    """counts the number of terms in a Collatz sequence.
+def collatz_count(n: int) -> int:
+    """Counts the number of terms in a Collatz sequence.
 
     Args:
-        n: Description for n.
+        n (int): Starting value.
+    Returns:
+        int
     """
     return _polpack.collatz_count(n)
 
 
-def cos_power_int(a, b, n):
+def cos_power_int(a: float, b: float, n: int) -> float:
     """Evaluates the cosine power integral.
 
     Args:
-        a: Description for a.
-        b: Description for b.
-        n: Description for n.
+        a (float): Lower limit.
+        b (float): Upper limit.
+        n (int): Power of cosine.
+    Returns:
+        float
     """
     return _polpack.cos_power_int(a, b, n)
 
 
-def euler_number2(n):
+def euler_number2(n: int) -> float:
     """Computes the Euler numbers.
 
     Args:
-        n: Description for n.
+        n (int): Index of Euler number to compute.
+    Returns:
+        float
     """
     return _polpack.euler_number2(n)
 
 
-def euler_poly(n, x):
+def euler_poly(n: int, x: float) -> float:
     """Evaluates the N-th Euler polynomial at X.
 
     Args:
-        n: Description for n.
-        x: Description for x.
+        n (int): Degree of polynomial.
+        x (float): Evaluation point.
+    Returns:
+        float
     """
     return _polpack.euler_poly(n, x)
 
 
-def gud(x):
+def gud(x: float) -> float:
     """Evaluates the Gudermannian function.
 
     Args:
-        x: Description for x.
+        x (float): Evaluation point.
+    Returns:
+        float
     """
     return _polpack.gud(x)
 
 
-def i4_choose(n, k):
+def i4_choose(n: int, k: int) -> int:
     """Computes the binomial coefficient C(N,K).
 
     Args:
-        n: Description for n.
-        k: Description for k.
+        n (int): Upper value.
+        k (int): Lower value.
+    Returns:
+        int
     """
     return _polpack.i4_choose(n, k)
 
 
-def i4_factorial(n):
+def i4_factorial(n: int) -> int:
     """Computes the factorial of N.
 
     Args:
-        n: Description for n.
+        n (int): Non-negative integer.
+    Returns:
+        int
     """
     return _polpack.i4_factorial(n)
 
 
-def i4_factorial2(n):
+def i4_factorial2(n: int) -> int:
     """Computes the double factorial function.
 
     Args:
-        n: Description for n.
+        n (int): Non-negative integer.
+    Returns:
+        int
     """
     return _polpack.i4_factorial2(n)
 
 
-def i4_huge():
-    """Returns a "huge" I4."""
+def i4_huge() -> int:
+    """Returns a "huge" I4.
+
+    Returns:
+        int
+    """
     return _polpack.i4_huge()
 
 
-def i4_is_prime(n):
-    """reports whether an I4 is prime.
+def i4_is_prime(n: int) -> bool:
+    """Reports whether an I4 is prime.
 
     Args:
-        n: Description for n.
+        n (int): Integer to test.
+    Returns:
+        bool
     """
     return _polpack.i4_is_prime(n)
 
 
-def i4_is_triangular(i):
-    """determines whether an integer is triangular.
+def i4_is_triangular(i: int) -> bool:
+    """Determines whether an integer is triangular.
 
     Args:
-        i: Description for i.
+        i (int): Integer to test.
+    Returns:
+        bool
     """
     return _polpack.i4_is_triangular(i)
 
 
-def i4_uniform_ab(a, b, seed):
+def i4_uniform_ab(a: int, b: int, seed: int) -> int:
     """Returns a scaled pseudorandom I4 between A and B.
 
     Args:
-        a: Description for a.
-        b: Description for b.
-        seed: Description for seed.
+        a (int): Lower bound.
+        b (int): Upper bound.
+        seed (int): Random seed.
+    Returns:
+        int
     """
     return _polpack.i4_uniform_ab(a, b, seed)
 
 
-def lambert_w(x):
-    """estimates the Lambert W function.
+def lambert_w(x: float) -> float:
+    """Estimates the Lambert W function.
 
     Args:
-        x: Description for x.
+        x (float): Evaluation point.
+    Returns:
+        float
     """
     return _polpack.lambert_w(x)
 
 
-def lambert_w_crude(x):
-    """is a crude estimate of the Lambert W function.
+def lambert_w_crude(x: float) -> float:
+    """Is a crude estimate of the Lambert W function.
 
     Args:
-        x: Description for x.
+        x (float): Evaluation point.
+    Returns:
+        float
     """
     return _polpack.lambert_w_crude(x)
 
 
-def lerch(z, s, a):
-    """estimates the Lerch transcendent function.
+def lerch(z: float, s: float, a: float) -> float:
+    """Estimates the Lerch transcendent function.
 
     Args:
-        z: Description for z.
-        s: Description for s.
-        a: Description for a.
+        z (float): z argument.
+        s (float): s argument.
+        a (float): a argument.
+    Returns:
+        float
     """
     return _polpack.lerch(z, s, a)
 
 
-def mertens(n):
+def mertens(n: int) -> int:
     """Evaluates the Mertens function.
 
     Args:
-        n: Description for n.
+        n (int): Argument.
+    Returns:
+        int
     """
     return _polpack.mertens(n)
 
 
-def normal_01_cdf_inverse(p):
-    """inverts the standard normal CDF.
+def normal_01_cdf_inverse(p: float) -> float:
+    """Inverts the standard normal CDF.
 
     Args:
-        p: Description for p.
+        p (float): Probability value in (0, 1).
+    Returns:
+        float
     """
     return _polpack.normal_01_cdf_inverse(p)
 
 
-def plane_partition_num(n):
+def plane_partition_num(n: int) -> int:
     """Returns the number of plane partitions of the integer N.
 
     Args:
-        n: Description for n.
+        n (int): Non-negative integer.
+    Returns:
+        int
     """
     return _polpack.plane_partition_num(n)
 
 
-def poly_coef_count(dim, degree):
-    """Evaluates the poly_coef_count function.
+def poly_coef_count(dim: int, degree: int) -> int:
+    """
+    Returns the monomial count for a polynomial of given dimension and degree.
 
     Args:
-        dim: Description for dim.
-        degree: Description for degree.
+        dim (int): Spatial dimension.
+        degree (int): Maximum total degree.
+    Returns:
+        int
     """
     return _polpack.poly_coef_count(dim, degree)
 
 
-def prime(n):
+def prime(n: int) -> int:
     """Returns any of the first PRIME_MAX prime numbers.
 
     Args:
-        n: Description for n.
+        n (int): Index of prime (1-based, up to 1600).
+    Returns:
+        int
     """
     return _polpack.prime(n)
 
 
-def pyramid_num(n):
+def pyramid_num(n: int) -> int:
     """Returns the N-th pyramidal number.
 
     Args:
-        n: Description for n.
+        n (int): Index.
+    Returns:
+        int
     """
     return _polpack.pyramid_num(n)
 
 
-def pyramid_square_num(n):
+def pyramid_square_num(n: int) -> int:
     """Returns the N-th pyramidal square number.
 
     Args:
-        n: Description for n.
+        n (int): Index.
+    Returns:
+        int
     """
     return _polpack.pyramid_square_num(n)
 
 
-def r8_agm(a, b):
+def r8_agm(a: float, b: float) -> float:
     """Computes the arithmetic-geometric mean of A and B.
 
     Args:
-        a: Description for a.
-        b: Description for b.
+        a (float): First value.
+        b (float): Second value.
+    Returns:
+        float
     """
     return _polpack.r8_agm(a, b)
 
 
-def r8_beta(x, y):
+def r8_beta(x: float, y: float) -> float:
     """Returns the value of the Beta function.
 
     Args:
-        x: Description for x.
-        y: Description for y.
+        x (float): First argument.
+        y (float): Second argument.
+    Returns:
+        float
     """
     return _polpack.r8_beta(x, y)
 
 
-def r8_choose(n, k):
+def r8_choose(n: int, k: int) -> float:
     """Computes the binomial coefficient C(N,K) as an R8.
 
     Args:
-        n: Description for n.
-        k: Description for k.
+        n (int): Upper value.
+        k (int): Lower value.
+    Returns:
+        float
     """
     return _polpack.r8_choose(n, k)
 
 
-def r8_epsilon():
-    """Returns the R8 roundoff unit."""
+def r8_epsilon() -> float:
+    """Returns the R8 roundoff unit.
+
+    Returns:
+        float
+    """
     return _polpack.r8_epsilon()
 
 
-def r8_erf(x):
+def r8_erf(x: float) -> float:
     """Evaluates the error function.
 
     Args:
-        x: Description for x.
+        x (float): Evaluation point.
+    Returns:
+        float
     """
     return _polpack.r8_erf(x)
 
 
-def r8_erf_inverse(y):
-    """inverts the error function.
+def r8_erf_inverse(y: float) -> float:
+    """Inverts the error function.
 
     Args:
-        y: Description for y.
+        y (float): Value in (-1, 1).
+    Returns:
+        float
     """
     return _polpack.r8_erf_inverse(y)
 
 
-def r8_euler_constant():
-    """Returns the value of the Euler-Mascheroni constant."""
+def r8_euler_constant() -> float:
+    """Returns the value of the Euler-Mascheroni constant.
+
+    Returns:
+        float
+    """
     return _polpack.r8_euler_constant()
 
 
-def r8_factorial(n):
-    """Computes the factorial of N.
+def r8_factorial(n: int) -> float:
+    """Computes the factorial of N as a float.
 
     Args:
-        n: Description for n.
+        n (int): Non-negative integer.
+    Returns:
+        float
     """
     return _polpack.r8_factorial(n)
 
 
-def r8_factorial_log(n):
+def r8_factorial_log(n: int) -> float:
     """Computes log(factorial(N)).
 
     Args:
-        n: Description for n.
+        n (int): Non-negative integer.
+    Returns:
+        float
     """
     return _polpack.r8_factorial_log(n)
 
 
-def r8_gamma_log(x):
-    """Evaluates log ( Gamma ( X ) ) for a real argument.
+def r8_gamma_log(x: float) -> float:
+    """Evaluates log(Gamma(X)) for a real argument.
 
     Args:
-        x: Description for x.
+        x (float): Evaluation point (positive).
+    Returns:
+        float
     """
     return _polpack.r8_gamma_log(x)
 
 
-def r8_huge():
-    """Returns a "huge" R8."""
+def r8_huge() -> float:
+    """Returns a "huge" R8.
+
+    Returns:
+        float
+    """
     return _polpack.r8_huge()
 
 
-def r8_mop(i):
+def r8_mop(i: int) -> float:
     """Returns the I-th power of -1 as an R8.
 
     Args:
-        i: Description for i.
+        i (int): Exponent.
+    Returns:
+        float
     """
     return _polpack.r8_mop(i)
 
 
-def r8_nint(x):
+def r8_nint(x: float) -> int:
     """Returns the nearest integer to an R8.
 
     Args:
-        x: Description for x.
+        x (float): Real value.
+    Returns:
+        int
     """
     return _polpack.r8_nint(x)
 
 
-def r8_pi():
-    """Returns the value of pi as an R8."""
+def r8_pi() -> float:
+    """Returns the value of pi as an R8.
+
+    Returns:
+        float
+    """
     return _polpack.r8_pi()
 
 
-def r8_psi(xx):
-    """Evaluates the function Psi(X).
+def r8_psi(xx: float) -> float:
+    """Evaluates the digamma function Psi(X).
 
     Args:
-        xx: Description for xx.
+        xx (float): Evaluation point (positive).
+    Returns:
+        float
     """
     return _polpack.r8_psi(xx)
 
 
-def r8_uniform_01(seed):
+def r8_uniform_01(seed: int) -> float:
     """Returns a unit pseudorandom R8.
 
     Args:
-        seed: Description for seed.
+        seed (int): Random seed.
+    Returns:
+        float
     """
     return _polpack.r8_uniform_01(seed)
 
 
-def r8poly_degree(na, a):
+def r8poly_degree(na: int, a: np.ndarray) -> int:
     """Returns the degree of a polynomial.
 
     Args:
-        na: Description for na.
-        a: Description for a.
+        na (int): Declared size of coefficient array.
+        a (np.ndarray): Coefficient array.
+    Returns:
+        int
     """
     return _polpack.r8poly_degree(na, a)
 
 
-def r8poly_value_horner(m, c, x):
+def r8poly_value_horner(m: int, c: np.ndarray, x: float) -> float:
     """Evaluates a polynomial using Horner's method.
 
     Args:
-        m: Description for m.
-        c: Description for c.
-        x: Description for x.
+        m (int): Degree of polynomial.
+        c (np.ndarray): Coefficient array of size m+1.
+        x (float): Evaluation point.
+    Returns:
+        float
     """
     return _polpack.r8poly_value_horner(m, c, x)
 
 
-def s_len_trim(s):
+def s_len_trim(s: str) -> int:
     """Returns the length of a string to the last nonblank.
 
     Args:
-        s: Description for s.
+        s (str): Input string.
+    Returns:
+        int
     """
     return _polpack.s_len_trim(s)
 
 
-def simplex_num(m, n):
+def simplex_num(m: int, n: int) -> int:
     """Evaluates the N-th Simplex number in M dimensions.
 
     Args:
-        m: Description for m.
-        n: Description for n.
+        m (int): Spatial dimension.
+        n (int): Index.
+    Returns:
+        int
     """
     return _polpack.simplex_num(m, n)
 
 
-def sin_power_int(a, b, n):
+def sin_power_int(a: float, b: float, n: int) -> float:
     """Evaluates the sine power integral.
 
     Args:
-        a: Description for a.
-        b: Description for b.
-        n: Description for n.
+        a (float): Lower limit.
+        b (float): Upper limit.
+        n (int): Power of sine.
+    Returns:
+        float
     """
     return _polpack.sin_power_int(a, b, n)
 
 
-def tetrahedron_num(n):
+def tetrahedron_num(n: int) -> int:
     """Returns the N-th tetrahedral number.
 
     Args:
-        n: Description for n.
+        n (int): Index.
+    Returns:
+        int
     """
     return _polpack.tetrahedron_num(n)
 
 
-def triangle_num(n):
+def triangle_num(n: int) -> int:
     """Returns the N-th triangular number.
 
     Args:
-        n: Description for n.
+        n (int): Index.
+    Returns:
+        int
     """
     return _polpack.triangle_num(n)
 
 
-def trinomial(i, j, k):
+def trinomial(i: int, j: int, k: int) -> int:
     """Computes a trinomial coefficient.
 
     Args:
-        i: Description for i.
-        j: Description for j.
-        k: Description for k.
+        i (int): First index.
+        j (int): Second index.
+        k (int): Third index.
+    Returns:
+        int
     """
     return _polpack.trinomial(i, j, k)
 
 
-def zeta(p):
-    """estimates the Riemann Zeta function.
+def zeta(p: float) -> float:
+    """Estimates the Riemann Zeta function.
 
     Args:
-        p: Description for p.
+        p (float): Argument (must be > 1).
+    Returns:
+        float
     """
     return _polpack.zeta(p)

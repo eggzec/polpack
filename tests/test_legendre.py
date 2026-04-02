@@ -5,7 +5,7 @@ import numpy as np
 import polpack
 
 
-def test_legendre_poly():
+def test_legendre_poly() -> None:
     """Test Legendre polynomial at x=0.25 against legacy data."""
     n = 10
     x = 0.25
@@ -29,7 +29,7 @@ def test_legendre_poly():
     np.testing.assert_allclose(cx, expected, rtol=1e-5)
 
 
-def test_legendre_associated():
+def test_legendre_associated() -> None:
     """Test associated Legendre functions."""
     n = 3
     m = 1
@@ -41,7 +41,7 @@ def test_legendre_associated():
     assert np.isclose(cx[1], -np.sqrt(0.75), rtol=1e-6)
 
 
-def test_legendre_associated_normalized():
+def test_legendre_associated_normalized() -> None:
     """Test normalized associated Legendre functions."""
     n = 3
     m = 0
@@ -52,7 +52,7 @@ def test_legendre_associated_normalized():
     assert np.isfinite(cx).all()
 
 
-def test_legendre_function_q():
+def test_legendre_function_q() -> None:
     """Test Legendre functions of the second kind."""
     n = 3
     x = 0.5
@@ -62,7 +62,7 @@ def test_legendre_function_q():
     assert np.isclose(cx[0], np.arctanh(0.5), rtol=1e-6)
 
 
-def test_legendre_poly_coef():
+def test_legendre_poly_coef() -> None:
     """Test Legendre polynomial coefficient computation."""
     n = 2
     c = np.zeros((n + 1, n + 1), dtype=np.float64, order="F")
@@ -72,13 +72,13 @@ def test_legendre_poly_coef():
     assert np.isclose(c[2, 2], 1.5, rtol=1e-6)
 
 
-def test_legendre_symbol():
+def test_legendre_symbol() -> None:
     """Test Legendre symbol computation."""
     # (1/3) = 1
     polpack.legendre_symbol(1, 3, np.int32(0))
 
 
-def test_jacobi_symbol():
+def test_jacobi_symbol() -> None:
     """Test Jacobi symbol computation."""
     j = np.int32(0)
     polpack.jacobi_symbol(2, 15, j)

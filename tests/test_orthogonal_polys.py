@@ -5,7 +5,7 @@ import numpy as np
 import polpack
 
 
-def test_hermite_poly_phys():
+def test_hermite_poly_phys() -> None:
     """Test physicist's Hermite polynomials at x=5.0 against legacy data."""
     n = 10
     x = 5.0
@@ -28,8 +28,9 @@ def test_hermite_poly_phys():
     np.testing.assert_allclose(cx, expected, rtol=1e-5)
 
 
-def test_gegenbauer_poly():
-    """Test Gegenbauer polynomial values at x=0.2, alpha=0.5 against legacy data."""
+def test_gegenbauer_poly() -> None:
+    """Test Gegenbauer polynomial values at x=0.2, alpha=0.5
+    against legacy data."""
     n = 10
     alpha = 0.5
     x = 0.2
@@ -52,7 +53,7 @@ def test_gegenbauer_poly():
     np.testing.assert_allclose(cx, expected, rtol=1e-5)
 
 
-def test_laguerre_poly():
+def test_laguerre_poly() -> None:
     """Test Laguerre polynomials at x=1.0 against legacy data."""
     n = 10
     x = 1.0
@@ -75,7 +76,7 @@ def test_laguerre_poly():
     np.testing.assert_allclose(cx, expected, rtol=1e-5)
 
 
-def test_jacobi_poly():
+def test_jacobi_poly() -> None:
     """Test Jacobi polynomials at x=0.5, alpha=0, beta=1 against legacy data."""
     n = 5
     alpha = 0.0
@@ -88,7 +89,7 @@ def test_jacobi_poly():
     np.testing.assert_allclose(cx, expected, rtol=1e-5)
 
 
-def test_krawtchouk():
+def test_krawtchouk() -> None:
     """Test Krawtchouk polynomials."""
     n = 3
     p = 0.5
@@ -100,7 +101,7 @@ def test_krawtchouk():
     assert np.isclose(v[0], 1.0)
 
 
-def test_meixner():
+def test_meixner() -> None:
     """Test Meixner polynomials."""
     n = 3
     beta = 2.0
